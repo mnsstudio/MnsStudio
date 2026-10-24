@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mns_Studio – Photo et vidéo, mode et lifestyle</title>
+<meta name="description" content="Mns_Studio, Sacha Minassian : photographe et vidéaste freelance. Mode, portrait, lifestyle. Réservez un shooting.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Instrument+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#000;--ink:#f3efe8;--red:#ff1f2d;--blue:#1a35ff;--line:rgba(243,239,232,.22);--d:'Syne','Arial Black',sans-serif;--b:'Instrument Sans','Helvetica Neue',Arial,sans-serif}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font:400 1.05rem/1.6 var(--b);transition:background .9s ease;overflow-x:hidden}
+img{display:block;max-width:100%}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--red);outline-offset:3px}
+header{position:fixed;inset:0 0 auto;z-index:20;display:flex;justify-content:space-between;align-items:center;padding:1.1rem clamp(1rem,4vw,3rem);mix-blend-mode:difference;color:#fff}
+header a{text-decoration:none;font-weight:500}
+header nav{display:flex;gap:clamp(1rem,3vw,2.2rem)}
+header nav a:hover{text-decoration:underline;text-decoration-thickness:2px}
+.logo{font:800 1.15rem var(--d)}
+/* hero */
+.hero{position:relative;min-height:100svh;display:grid;align-items:end;padding:0 clamp(1rem,4vw,3rem) clamp(1.5rem,5vh,3rem);overflow:hidden}
+.hero .bg{position:absolute;inset:0;z-index:0}
+.hero .bg img{position:absolute;right:0;top:0;height:100%;width:62%;object-fit:cover;opacity:0;transition:opacity 1.6s ease}
+.hero .bg img.on{opacity:1}
+.hero h1{position:relative;z-index:2;font:800 clamp(3.6rem,17vw,16rem);line-height:.82;letter-spacing:-.045em;mix-blend-mode:difference;color:#fff;overflow:hidden}
+.hero h1 span{display:inline-block;transform:translateY(105%);animation:up 1.1s cubic-bezier(.2,.8,.2,1) forwards}
+@keyframes up{to{transform:none}}
+.hero .row{position:relative;z-index:2;display:flex;flex-wrap:wrap;justify-content:space-between;gap:1rem;align-items:end;margin-top:1.5rem}
+.hero p{max-width:22ch;font-size:1.25rem;line-height:1.3;mix-blend-mode:difference;color:#fff}
+.btn{display:inline-block;padding:.9rem 1.6rem;background:var(--red);color:#fff;font:700 1rem var(--b);border:0;text-decoration:none;cursor:pointer;transition:background .25s,transform .25s}
+.btn:hover{background:var(--blue)}
+.btn.ghost{background:transparent;border:1.5px solid var(--ink);color:var(--ink)}
+.btn.ghost:hover{background:var(--ink);color:#000}
+/* series */
+section{padding:clamp(4rem,10vw,8rem) 0}
+.serie{padding:clamp(3rem,7vw,6rem) 0}
+.serie h2,.sec h2{font:800 clamp(2.4rem,8vw,6.5rem);line-height:.9;letter-spacing:-.035em;padding:0 clamp(1rem,4vw,3rem);margin-bottom:.8rem}
+.serie .meta{padding:0 clamp(1rem,4vw,3rem);margin-bottom:1.8rem;max-width:46ch;opacity:.8}
+.rail{display:flex;gap:clamp(.6rem,1.4vw,1.2rem);overflow-x:auto;scroll-snap-type:x proximity;padding:0 clamp(1rem,4vw,3rem) 1rem;cursor:grab;scrollbar-width:thin;scrollbar-color:var(--red) transparent}
+.rail.drag{cursor:grabbing;scroll-snap-type:none}
+.rail button{flex:none;scroll-snap-align:start;border:0;padding:0;background:none;cursor:zoom-in;overflow:hidden}
+.rail img{height:min(74vh,720px);width:auto;transition:transform .8s cubic-bezier(.2,.8,.2,1),filter .4s;filter:saturate(.9)}
+.rail button:hover img{transform:scale(1.04);filter:none}
+.sec{padding:clamp(4rem,10vw,8rem) clamp(1rem,4vw,3rem)}
+.sec h2{padding:0}
+/* réservation */
+.book{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:clamp(1.5rem,4vw,4rem);margin-top:2rem}
+@media(max-width:900px){.book{grid-template-columns:1fr}}
+.wk{display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;gap:1rem}
+.wk button{background:none;border:1.5px solid var(--ink);color:var(--ink);padding:.4rem .9rem;cursor:pointer;font:500 1rem var(--b)}
+.wk button:hover:not(:disabled){background:var(--ink);color:#000}.wk button:disabled{opacity:.3;cursor:default}
+.grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:.5rem}
+@media(max-width:700px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.day{border-top:2px solid var(--ink);padding-top:.6rem}
+.day b{display:block;font:700 1.1rem var(--d)}
+.day small{opacity:.65;display:block;margin-bottom:.6rem}
+.slot{display:block;width:100%;margin-bottom:.4rem;padding:.5rem;background:none;color:var(--ink);border:1.5px solid var(--line);font:500 .95rem var(--b);cursor:pointer;transition:all .2s}
+.slot:hover:not(:disabled){border-color:var(--red)}
+.slot.sel{background:var(--red);border-color:var(--red);color:#fff}
+.slot:disabled{text-decoration:line-through;opacity:.35;cursor:default}
+.none{opacity:.45;font-size:.9rem}
+.svc{list-style:none;padding:0;margin:0 0 2rem}
+.svc li{display:flex;justify-content:space-between;gap:1rem;padding:.9rem 0;border-bottom:1px solid var(--line)}
+.svc li span{opacity:.7;display:block;font-size:.92rem}
+.svc strong{font:800 1.5rem var(--d);white-space:nowrap}
+form{display:grid;gap:.8rem}
+label{display:grid;gap:.25rem;font-weight:500}
+input,select,textarea{width:100%;padding:.8rem;background:rgba(255,255,255,.06);border:1.5px solid var(--line);color:var(--ink);font:400 1rem var(--b)}
+select option{color:#000}
+input:focus,select:focus,textarea:focus{border-color:var(--red);outline:0}
+#pick{min-height:1.5em;color:var(--red);font-weight:500}
+#msg{min-height:1.4em}
+.vid{aspect-ratio:16/9;width:100%;border:0}
+.contact a{font:800 clamp(1.4rem,5vw,3.6rem);letter-spacing:-.03em;display:block;line-height:1.1;text-decoration:none;word-break:break-all}
+.contact a:hover{color:var(--red)}
+footer{padding:2rem clamp(1rem,4vw,3rem);opacity:.6;font-size:.9rem}
+/* lightbox */
+#lb{position:fixed;inset:0;z-index:50;background:rgba(0,0,0,.94);display:none;place-items:center}
+#lb.on{display:grid;animation:fade .3s}
+@keyframes fade{from{opacity:0}}
+#lb img{max-height:92vh;max-width:92vw;object-fit:contain}
+#lb button{position:absolute;background:none;border:0;color:#fff;font:700 2.4rem var(--b);cursor:pointer;padding:1rem}
+#lb .x{top:0;right:0}#lb .p{left:0}#lb .n{right:0}
+/* curseur */
+#cur{position:fixed;z-index:60;width:14px;height:14px;border-radius:50%;background:#fff;mix-blend-mode:difference;pointer-events:none;transform:translate(-50%,-50%);transition:width .25s,height .25s;display:none}
+#cur.big{width:58px;height:58px}
+@media(hover:hover) and (pointer:fine){#cur{display:block}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.hero h1 span{transform:none}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<div id="cur"></div>
+<header>
+  <a class="logo" href="#top">Mns_Studio</a>
+  <nav><a href="#portfolio">Portfolio</a><a href="#reservation">Réservation</a><a href="#contact">Contact</a></nav>
+</header>
+
+<main id="top">
+<div class="hero">
+  <div class="bg" id="slides"></div>
+  <h1 aria-label="Mns_Studio"><span>Mns_</span><span style="animation-delay:.12s">Studio</span></h1>
+  <div class="row">
+    <p>Photo et vidéo, mode et lifestyle.</p>
+    <div><a class="btn" href="#reservation">Réserver un shooting</a> <a class="btn ghost" href="#portfolio">Voir le portfolio</a></div>
+  </div>
+</div>
+
+<section id="portfolio" style="padding-bottom:0"><div id="series"></div></section>
+
+<section class="sec" id="video" hidden>
+  <h2>Vidéo</h2><br>
+  <iframe class="vid" id="yt" title="Vidéo Mns_Studio" allowfullscreen loading="lazy"></iframe>
+</section>
+
+<section class="sec" id="reservation">
+  <h2>Réservation</h2>
+  <div class="book">
+    <div>
+      <div class="wk"><button id="prev" aria-label="Semaine précédente">Précédente</button><strong id="wlabel"></strong><button id="next" aria-label="Semaine suivante">Suivante</button></div>
+      <div class="grid" id="grid"></div>
+    </div>
+    <div>
+      <ul class="svc" id="svc"></ul>
+      <form id="f">
+        <p id="pick">Choisissez un créneau dans le planning.</p>
+        <label>Prestation<select id="sv" required></select></label>
+        <label>Nom<input id="nm" required autocomplete="name"></label>
+        <label>Votre mail<input id="em" type="email" required autocomplete="email"></label>
+        <label>Votre projet<textarea id="tx" rows="4" placeholder="Lieu, ambiance, tenues, références…"></textarea></label>
+        <button class="btn" type="submit">Envoyer la demande</button>
+        <p id="msg" role="status"></p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<section class="sec contact" id="contact">
+  <h2>Contact</h2><br>
+  <p style="max-width:40ch;margin-bottom:1.5rem">Sacha Minassian, photographe et vidéaste freelance. Mode, portrait et lifestyle.</p>
+  <a href="mailto:mns.studioprod@gmail.com">mns.studioprod@gmail.com</a>
+  <a href="https://instagram.com/Mns_Studio" target="_blank" rel="noopener">@Mns_Studio</a>
+</section>
+</main>
+<footer>© 2026 Mns_Studio. Tous droits réservés sur les photographies.</footer>
+
+<div id="lb" role="dialog" aria-modal="true" aria-label="Photo en grand">
+  <button class="x" aria-label="Fermer">×</button><button class="p" aria-label="Précédente">‹</button><img alt=""><button class="n" aria-label="Suivante">›</button>
+</div>
+
+<script>
+/* ===== À MODIFIER ===== */
+const YOUTUBE_ID = "";                 // ex. "dQw4w9WgXcQ" : l’identifiant de ta vidéo YouTube. Vide = section masquée.
+const EMAIL = "mns.studioprod@gmail.com";
+const SERVICES = [                     // prestations et prix d’exemple, à remplacer par les tiens
+  {n:"Shooting mode ou lifestyle", d:"1h30, 10 photos retouchées", p:150},
+  {n:"Portrait", d:"1h, 6 photos retouchées", p:90},
+  {n:"Vidéo courte (reel)", d:"Demi-journée, montage inclus", p:250},
+  {n:"Pack photo et vidéo", d:"Journée complète", p:400}
+];
+const SLOTS = {1:["10:00","14:00"],2:["10:00","14:00"],3:["14:00","17:00"],4:["10:00","14:00"],5:["14:00"],6:["10:00","14:00","17:00"],0:[]}; // 0 = dimanche
+const BOOKED = ["2026-10-27 14:00"];   // créneaux déjà pris, format "AAAA-MM-JJ HH:MM"
+const SERIES = [
+ {t:"Concorde", m:"Robes noires au coucher du soleil, place de la Concorde.", bg:"#000", f:["dsc07734","dsc07579","dsc07583","dsc07590","dsc07661","dsc07664","dsc07606","dsc07702-2","dsc07708-2","dsc07700-2","dsc07716","dsc07725"]},
+ {t:"Feu", m:"Journal brûlé, lunettes noires, lumière orange.", bg:"#1c0603", f:["dsc08652","dsc08635","dsc08602-3","dsc08659","dsc08551","dsc08554","retoucher-noir"]},
+ {t:"Graffiti", m:"Cuir, chemise blanche et murs peints.", bg:"#000", f:["dsc08339","dsc08275-2","dsc08309","dsc08080","dsc08104","dsc08105"]},
+ {t:"Porte bleue", m:"Chemise à carreaux sur bleu roi.", bg:"#10229c", f:["dsc09242","dsc09266","dsc09273","dsc09332"]},
+ {t:"Rouge", m:"Un chemisier rouge, deux lumières.", bg:"#7d0a12", f:["dsc09861","dsc09867","dsc00090","dsc00102","dsc00096"]},
+ {t:"Reflets", m:"Miroir et pierre éclairée en rouge.", bg:"#000", f:["dsc09829","dsc09850","dsc09855"]},
+ {t:"Rues", m:"Contre-jour, tunnel de verre et parking.", bg:"#000", f:["dsc05676-2","dsc05865","dsc06128","dsc06231-2","dsc02429-1","dsc02856-1","finale"]}
+];
+/* ===== FIN ===== */
+
+const $ = s => document.querySelector(s);
+const src = n => `images/${n}.jpg`;
+const all = [];
+
+// hero : diaporama
+const sl = $('#slides');
+["dsc08652","dsc09829","dsc07708-2","dsc05676-2"].forEach((n,i)=>{const im=new Image();im.src=src(n);im.alt="";if(i===0)im.className="on";sl.append(im)});
+let k=0;setInterval(()=>{const s=sl.children;s[k].classList.remove("on");k=(k+1)%s.length;s[k].classList.add("on")},4200);
+
+// séries
+const box = $('#series');
+SERIES.forEach(s=>{
+  const el=document.createElement('div');el.className='serie';el.dataset.bg=s.bg;
+  el.innerHTML=`<h2>${s.t}</h2><p class="meta">${s.m}</p><div class="rail"></div>`;
+  const rail=el.querySelector('.rail');
+  s.f.forEach(n=>{
+    const b=document.createElement('button');b.setAttribute('aria-label',`Agrandir : ${s.t}`);
+    const i=all.push({n,t:s.t})-1;b.dataset.i=i;
+    b.innerHTML=`<img src="${src(n)}" alt="${s.t}, photo de Mns_Studio" loading="lazy">`;
+    rail.append(b);
+  });
+  box.append(el);
+});
+// fond qui change avec la série visible
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)document.body.style.setProperty('--bg',e.target.dataset.bg)}),{rootMargin:'-45% 0px -45% 0px'});
+document.querySelectorAll('.serie').forEach(e=>io.observe(e));
+new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)document.body.style.setProperty('--bg','#000')}),{rootMargin:'-45% 0px -45% 0px'}).observe($('#reservation'));
+
+// glisser pour défiler
+document.querySelectorAll('.rail').forEach(r=>{
+  let d=false,x=0,l=0,moved=0;
+  r.addEventListener('pointerdown',e=>{if(e.pointerType!=='mouse')return;d=true;moved=0;x=e.clientX;l=r.scrollLeft});
+  addEventListener('pointerup',()=>{d=false;r.classList.remove('drag')});
+  addEventListener('pointermove',e=>{if(!d)return;const dx=e.clientX-x;moved=Math.max(moved,Math.abs(dx));if(moved>4)r.classList.add('drag');r.scrollLeft=l-dx});
+  r.addEventListener('click',e=>{if(moved>4){e.stopPropagation();e.preventDefault();moved=0}},true);
+});
+
+// lightbox
+const lb=$('#lb'),lbi=lb.querySelector('img');let cur=0;
+const show=i=>{cur=(i+all.length)%all.length;lbi.src=src(all[cur].n);lbi.alt=all[cur].t};
+box.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;show(+b.dataset.i);lb.classList.add('on');lb.querySelector('.x').focus()});
+const close=()=>lb.classList.remove('on');
+lb.querySelector('.x').onclick=close;lb.querySelector('.p').onclick=()=>show(cur-1);lb.querySelector('.n').onclick=()=>show(cur+1);
+lb.addEventListener('click',e=>{if(e.target===lb)close()});
+addEventListener('keydown',e=>{if(!lb.classList.contains('on'))return;if(e.key==='Escape')close();if(e.key==='ArrowLeft')show(cur-1);if(e.key==='ArrowRight')show(cur+1)});
+
+// vidéo
+if(YOUTUBE_ID){$('#yt').src='https://www.youtube-nocookie.com/embed/'+YOUTUBE_ID;$('#video').hidden=false}
+
+// réservation
+const JOURS=["Dimanche","Lundi","Mardi","Mercredi","Jeudi","Vendredi","Samedi"];
+const iso=d=>d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+const mondayOf=d=>{const m=new Date(d.getFullYear(),d.getMonth(),d.getDate());m.setDate(m.getDate()-((m.getDay()+6)%7));return m};
+const base=mondayOf(new Date());let off=0,chosen=null;
+$('#svc').innerHTML=SERVICES.map(s=>`<li><div>${s.n}<span>${s.d}</span></div><strong>${s.p} €</strong></li>`).join('');
+$('#sv').innerHTML=SERVICES.map(s=>`<option>${s.n} (${s.p} €)</option>`).join('');
+function week(){
+  const g=$('#grid');g.innerHTML='';const start=new Date(base);start.setDate(start.getDate()+off*7);
+  const end=new Date(start);end.setDate(end.getDate()+6);
+  $('#wlabel').textContent=`${start.getDate()}/${start.getMonth()+1} au ${end.getDate()}/${end.getMonth()+1}`;
+  $('#prev').disabled=off===0;
+  const today=iso(new Date());
+  for(let i=0;i<7;i++){
+    const d=new Date(start);d.setDate(d.getDate()+i);const key=iso(d);
+    const wrap=document.createElement('div');wrap.className='day';
+    wrap.innerHTML=`<b>${JOURS[d.getDay()].slice(0,3)}.</b><small>${d.getDate()}/${d.getMonth()+1}</small>`;
+    const sl=(SLOTS[d.getDay()]||[]).filter(()=>key>=today);
+    if(!sl.length)wrap.insertAdjacentHTML('beforeend','<span class="none">Indisponible</span>');
+    sl.forEach(h=>{
+      const b=document.createElement('button');b.type='button';b.className='slot';b.textContent=h;
+      const id=key+' '+h;b.disabled=BOOKED.includes(id);
+      if(chosen&&chosen.id===id)b.classList.add('sel');
+      b.onclick=()=>{chosen={id,txt:`${JOURS[d.getDay()]} ${d.getDate()}/${d.getMonth()+1} à ${h}`};$('#pick').textContent='Créneau choisi : '+chosen.txt;week()};
+      wrap.append(b);
+    });
+    g.append(wrap);
+  }
+}
+$('#prev').onclick=()=>{off--;week()};$('#next').onclick=()=>{off++;week()};week();
+$('#f').addEventListener('submit',e=>{
+  e.preventDefault();
+  if(!chosen){$('#msg').textContent='Choisissez d’abord un créneau dans le planning.';return}
+  const body=`Bonjour,\n\nJe souhaite réserver : ${$('#sv').value}\nCréneau : ${chosen.txt}\n\nNom : ${$('#nm').value}\nMail : ${$('#em').value}\n\nProjet :\n${$('#tx').value}`;
+  location.href=`mailto:${EMAIL}?subject=${encodeURIComponent('Demande de réservation : '+chosen.txt)}&body=${encodeURIComponent(body)}`;
+  $('#msg').textContent='Votre application de mail s’ouvre avec la demande. Envoyez-la pour la confirmer.';
+});
+
+// curseur
+const c=$('#cur');
+addEventListener('pointermove',e=>{c.style.left=e.clientX+'px';c.style.top=e.clientY+'px'});
+document.addEventListener('pointerover',e=>c.classList.toggle('big',!!e.target.closest('.rail button')));
+</script>
+</body>
+</html>
