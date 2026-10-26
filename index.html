@@ -24,9 +24,9 @@ header nav a:hover{text-decoration:underline;text-decoration-thickness:2px}
 /* hero */
 .hero{position:relative;min-height:100svh;display:grid;align-items:end;padding:0 clamp(1rem,4vw,3rem) clamp(1.5rem,5vh,3rem);overflow:hidden}
 .hero .bg{position:absolute;inset:0;z-index:0}
-.hero .bg img{position:absolute;right:0;top:0;height:100%;width:62%;object-fit:cover;opacity:0;transition:opacity 1.6s ease}
+.hero .bg img{position:absolute;right:0;top:0;height:100%;width:min(54%,980px);object-fit:cover;opacity:0;transition:opacity 1.6s ease}
 .hero .bg img.on{opacity:1}
-.hero h1{position:relative;z-index:2;font:800 clamp(3.6rem,17vw,16rem);line-height:.82;letter-spacing:-.045em;mix-blend-mode:difference;color:#fff;overflow:hidden}
+.hero h1{position:relative;z-index:2;font:800 clamp(3.6rem,17vw,16rem) var(--d);line-height:.82;letter-spacing:-.045em;mix-blend-mode:difference;color:#fff;overflow:hidden}
 .hero h1 span{display:inline-block;transform:translateY(105%);animation:up 1.1s cubic-bezier(.2,.8,.2,1) forwards}
 @keyframes up{to{transform:none}}
 .hero .row{position:relative;z-index:2;display:flex;flex-wrap:wrap;justify-content:space-between;gap:1rem;align-items:end;margin-top:1.5rem}
@@ -38,7 +38,7 @@ header nav a:hover{text-decoration:underline;text-decoration-thickness:2px}
 /* series */
 section{padding:clamp(4rem,10vw,8rem) 0}
 .serie{padding:clamp(3rem,7vw,6rem) 0}
-.serie h2,.sec h2{font:800 clamp(2.4rem,8vw,6.5rem);line-height:.9;letter-spacing:-.035em;padding:0 clamp(1rem,4vw,3rem);margin-bottom:.8rem}
+.serie h2,.sec h2{font:800 clamp(2.4rem,8vw,6.5rem) var(--d);line-height:.9;letter-spacing:-.035em;padding:0 clamp(1rem,4vw,3rem);margin-bottom:.8rem}
 .serie .meta{padding:0 clamp(1rem,4vw,3rem);margin-bottom:1.8rem;max-width:46ch;opacity:.8}
 .rail{display:flex;gap:clamp(.6rem,1.4vw,1.2rem);overflow-x:auto;scroll-snap-type:x proximity;padding:0 clamp(1rem,4vw,3rem) 1rem;cursor:grab;scrollbar-width:thin;scrollbar-color:var(--red) transparent}
 .rail.drag{cursor:grabbing;scroll-snap-type:none}
@@ -47,6 +47,20 @@ section{padding:clamp(4rem,10vw,8rem) 0}
 .rail button:hover img{transform:scale(1.04);filter:none}
 .sec{padding:clamp(4rem,10vw,8rem) clamp(1rem,4vw,3rem)}
 .sec h2{padding:0}
+.tag{font:700 clamp(1.2rem,3vw,1.8rem) var(--d);max-width:28ch;margin:1rem 0}
+.zone{max-width:62ch;padding:1rem 0 2rem;border-bottom:1px solid var(--line);margin-bottom:2.5rem;opacity:.9}
+.tarifs-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:2.5rem 4rem}
+.grp h3,.sec h3{font:800 1.6rem var(--d);margin-bottom:.6rem}
+details{border-top:1px solid var(--line)}details:last-child{border-bottom:1px solid var(--line)}
+summary{display:flex;justify-content:space-between;gap:1rem;padding:.9rem 0;cursor:pointer;list-style:none;font-weight:500}
+summary::-webkit-details-marker{display:none}
+summary strong{font:800 1.3rem var(--d);white-space:nowrap}
+summary:hover span{color:var(--red)}
+details ul{padding:0 0 .8rem 1.1rem;opacity:.85}
+.note{font-size:.9rem;opacity:.65;padding-bottom:.9rem}
+.opts{list-style:none;padding:0;margin:0 0 2rem;max-width:62ch}
+.opts li{display:flex;justify-content:space-between;gap:1.5rem;padding:.7rem 0;border-bottom:1px solid var(--line)}
+.opts strong{font-weight:500;text-align:right;opacity:.85}
 /* réservation */
 .book{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:clamp(1.5rem,4vw,4rem);margin-top:2rem}
 @media(max-width:900px){.book{grid-template-columns:1fr}}
@@ -89,6 +103,21 @@ footer{padding:2rem clamp(1rem,4vw,3rem);opacity:.6;font-size:.9rem}
 #cur{position:fixed;z-index:60;width:14px;height:14px;border-radius:50%;background:#fff;mix-blend-mode:difference;pointer-events:none;transform:translate(-50%,-50%);transition:width .25s,height .25s;display:none}
 #cur.big{width:58px;height:58px}
 @media(hover:hover) and (pointer:fine){#cur{display:block}}
+.mb{display:none}
+@media(max-width:700px){
+header{mix-blend-mode:normal;padding:.7rem 1rem}
+header::before{content:"";position:absolute;inset:0;background:rgba(0,0,0,.82);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);z-index:-1}
+.logo{position:relative;z-index:3;font-size:1rem}
+.mb{display:block;position:relative;z-index:3;min-height:46px;min-width:96px;padding:0 1.2rem;background:var(--red);color:#fff;border:0;font:700 1.05rem var(--b);cursor:pointer}
+header nav{display:none}
+header.open nav{display:flex;position:fixed;inset:0;z-index:2;flex-direction:column;justify-content:center;gap:1.2rem;padding:2rem 1.5rem;background:#000}
+header.open nav a{font:800 clamp(2.4rem,13vw,4rem) var(--d);text-decoration:none}
+.hero .bg img{left:0;right:auto;width:100%}
+.hero .bg::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.9),rgba(0,0,0,.05) 62%)}
+.hero h1{mix-blend-mode:normal}.hero h1 span{display:block}.hero p{mix-blend-mode:normal}
+.hero .row>div{width:100%;display:grid;gap:.6rem;text-align:center}
+.hero .btn{padding:1rem 1.2rem;font-size:1.05rem}
+}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.hero h1 span{transform:none}html{scroll-behavior:auto}}
 </style>
 </head>
@@ -96,7 +125,8 @@ footer{padding:2rem clamp(1rem,4vw,3rem);opacity:.6;font-size:.9rem}
 <div id="cur"></div>
 <header>
   <a class="logo" href="#top">Mns_Studio</a>
-  <nav><a href="#portfolio">Portfolio</a><a href="#reservation">Réservation</a><a href="#contact">Contact</a></nav>
+  <button id="mb" class="mb" aria-expanded="false" aria-controls="nav">Menu</button>
+  <nav id="nav"><a href="#portfolio">Portfolio</a><a href="#tarifs">Tarifs</a><a href="#reservation">Réservation</a><a href="#contact">Contact</a></nav>
 </header>
 
 <main id="top">
@@ -116,6 +146,16 @@ footer{padding:2rem clamp(1rem,4vw,3rem);opacity:.6;font-size:.9rem}
   <iframe class="vid" id="yt" title="Vidéo Mns_Studio" allowfullscreen loading="lazy"></iframe>
 </section>
 
+<section class="sec" id="tarifs">
+  <h2>Tarifs</h2>
+  <p class="tag">Des images qui racontent une histoire. Des vidéos qui marquent les esprits.</p>
+  <p class="zone"><strong>Zone principale d’intervention : Paris.</strong> Toute prestation réalisée en dehors de Paris entraîne un supplément tarifaire calculé selon la localisation et les frais de déplacement. Ce supplément sera précisé sur le devis avant confirmation de la réservation.</p>
+  <div class="tarifs-grid" id="tarifs-list"></div>
+  <h3 style="margin-top:3rem">Options</h3>
+  <ul class="opts" id="opts"></ul>
+  <p class="note">Les tarifs et prestations sont à confirmer sur le devis. Les conditions de réservation, de paiement, de modification, de livraison et d’utilisation des images sont précisées dans les documents contractuels applicables.</p>
+</section>
+
 <section class="sec" id="reservation">
   <h2>Réservation</h2>
   <div class="book">
@@ -124,13 +164,14 @@ footer{padding:2rem clamp(1rem,4vw,3rem);opacity:.6;font-size:.9rem}
       <div class="grid" id="grid"></div>
     </div>
     <div>
-      <ul class="svc" id="svc"></ul>
       <form id="f">
         <p id="pick">Choisissez un créneau dans le planning.</p>
         <label>Prestation<select id="sv" required></select></label>
         <label>Nom<input id="nm" required autocomplete="name"></label>
         <label>Votre mail<input id="em" type="email" required autocomplete="email"></label>
-        <label>Votre projet<textarea id="tx" rows="4" placeholder="Lieu, ambiance, tenues, références…"></textarea></label>
+        <label>Lieu du shooting<input id="lo" placeholder="Paris ou autre ville"></label>
+        <label>Nombre de participants<input id="pa" inputmode="numeric" placeholder="1"></label>
+        <label>Votre projet<textarea id="tx" rows="4" placeholder="Type de projet, inspirations, besoins particuliers…"></textarea></label>
         <button class="btn" type="submit">Envoyer la demande</button>
         <p id="msg" role="status"></p>
       </form>
@@ -140,12 +181,12 @@ footer{padding:2rem clamp(1rem,4vw,3rem);opacity:.6;font-size:.9rem}
 
 <section class="sec contact" id="contact">
   <h2>Contact</h2><br>
-  <p style="max-width:40ch;margin-bottom:1.5rem">Sacha Minassian, photographe et vidéaste freelance. Mode, portrait et lifestyle.</p>
-  <a href="mailto:mns.studioprod@gmail.com">mns.studioprod@gmail.com</a>
+  <p style="max-width:46ch;margin-bottom:1.5rem">Sacha Minassian, photographe et vidéaste freelance. Pour préparer un devis, indiquez le type de projet, la date, le lieu, le nombre de participants, vos inspirations et vos besoins particuliers.</p>
+  <a href="mailto:MNS.studioprod@gmail.com">MNS.studioprod@gmail.com</a>
   <a href="https://instagram.com/Mns_Studio" target="_blank" rel="noopener">@Mns_Studio</a>
 </section>
 </main>
-<footer>© 2026 Mns_Studio. Tous droits réservés sur les photographies.</footer>
+<footer>© 2026 Mns_Studio. Tous droits réservés sur les photographies. Zone principale d’intervention : Paris.</footer>
 
 <div id="lb" role="dialog" aria-modal="true" aria-label="Photo en grand">
   <button class="x" aria-label="Fermer">×</button><button class="p" aria-label="Précédente">‹</button><img alt=""><button class="n" aria-label="Suivante">›</button>
@@ -154,12 +195,34 @@ footer{padding:2rem clamp(1rem,4vw,3rem);opacity:.6;font-size:.9rem}
 <script>
 /* ===== À MODIFIER ===== */
 const YOUTUBE_ID = "";                 // ex. "dQw4w9WgXcQ" : l’identifiant de ta vidéo YouTube. Vide = section masquée.
-const EMAIL = "mns.studioprod@gmail.com";
-const SERVICES = [                     // prestations et prix d’exemple, à remplacer par les tiens
-  {n:"Shooting mode ou lifestyle", d:"1h30, 10 photos retouchées", p:150},
-  {n:"Portrait", d:"1h, 6 photos retouchées", p:90},
-  {n:"Vidéo courte (reel)", d:"Demi-journée, montage inclus", p:250},
-  {n:"Pack photo et vidéo", d:"Journée complète", p:400}
+const EMAIL = "MNS.studioprod@gmail.com";
+const OFFRES = [               // grille tarifaire : à modifier ici
+ {g:"Photographie : shootings solo", o:[
+  {n:"Classic Begins", p:"100 €", l:["Durée : 1 h à 1 h 30","10 photos retouchées","Accompagnement et direction de pose","Idéal pour les portraits naturels et les réseaux sociaux"]},
+  {n:"Editorial Essentiel", p:"140 €", l:["Durée : 1 h 30 à 2 h","15 photos retouchées","Direction artistique personnalisée","Préparation d’une inspiration visuelle","Idéal pour les modèles, artistes, créateurs et portraits éditoriaux"]},
+  {n:"Editorial Premium", p:"220 €", l:["Durée : jusqu’à 2 h 30","30 photos retouchées","Direction artistique approfondie","Possibilité de plusieurs changements de tenues","Plusieurs ambiances ou lieux selon les conditions du shooting"]},
+  {n:"Editorial Signature", p:"290 €", l:["Durée : jusqu’à 3 h 30","Jusqu’à 40 photos retouchées","Direction artistique avancée et préparation du projet","Plusieurs tenues et ambiances possibles","Une expérience créative personnalisée"]}]},
+ {g:"Photographie : shootings en groupe", o:[
+  {n:"Duo", p:"250 €", l:["Durée : jusqu’à 2 h 30","Portraits individuels et photos à deux","Idéal pour les couples, amis et projets créatifs","Nombre de photos retouchées défini avant réservation"]},
+  {n:"Trio", p:"300 €", l:["Durée : jusqu’à 3 h","Jusqu’à 30 photos retouchées","Portraits individuels et photos de groupe","Idéal pour les amis, créateurs et petits collectifs"]},
+  {n:"Famille", p:"300 €", l:["Durée : jusqu’à 3 h","Jusqu’à 30 photos retouchées","Portraits individuels, photos de groupe et moments spontanés","Animaux acceptés selon le lieu et les conditions du shooting"]},
+  {n:"Animaux", p:"155 €", l:["Durée : jusqu’à 1 h","15 photos retouchées","Jusqu’à 3 animaux","Portraits individuels et photos avec leur propriétaire","Lieu et conditions adaptés au bien-être et à la sécurité des animaux"]},
+  {n:"Projet photo sur mesure", p:"Sur devis", l:["Tarif sur devis selon le concept, la durée, le nombre de participants et les besoins spécifiques."]}]},
+ {g:"Vidéo : contenu court", o:[
+  {n:"Reel / TikTok", p:"250 €", l:["Briefing et définition du concept","Jusqu’à 1 h 30 de tournage","1 vidéo verticale de 15 à 30 secondes","Montage dynamique et étalonnage","Sous-titres et effets stylisés selon le projet","Livraison adaptée aux réseaux sociaux"], note:"Les scénarios complexes, tournages sur plusieurs lieux, acteurs ou effets avancés peuvent faire l’objet d’un devis complémentaire."},
+  {n:"Monthly Creator", p:"600 € / mois", l:["Préparation du contenu et définition des idées","Une demi-journée de tournage, jusqu’à 4 h","Jusqu’à 4 vidéos verticales par mois, de 45 secondes maximum chacune","Montage, étalonnage et sous-titres","Intégration des éléments graphiques ou de l’identité visuelle du créateur","Une série de corrections raisonnables par vidéo"], note:"Les tournages supplémentaires et demandes complexes font l’objet d’un supplément ou d’un devis. Le calendrier de tournage, les modalités de livraison et le paiement sont définis contractuellement."}]},
+ {g:"Vidéo : événementiel", o:[
+  {n:"Aftermovie, demi-journée", p:"500 €", l:["Jusqu’à 4 h de présence sur place","Captation des moments forts, de l’ambiance et du public","1 aftermovie monté de 2 minutes maximum","Étalonnage et mixage audio","Musique utilisée sous réserve des droits applicables","Livraison numérique"]},
+  {n:"Aftermovie, journée complète", p:"750 €", l:["Jusqu’à 8 h de présence sur place","Captation des temps forts, participants et ambiance générale","1 aftermovie monté de 5 minutes maximum","Étalonnage et mixage audio","1 teaser vertical de 30 secondes pour les réseaux sociaux","Musique utilisée sous réserve des droits applicables","Livraison numérique"]},
+  {n:"Projet vidéo sur mesure", p:"Sur devis", l:["Tarif sur devis selon la durée de captation, le nombre de vidéos, le format, le scénario et les contraintes de production."]}]}
+];
+const OPTIONS = [
+ ["Livraison express sous 48 h","+50 €, selon disponibilité et confirmation préalable"],
+ ["Studio","Supplément à partir de 75 €, selon le lieu et le coût de location"],
+ ["Photos retouchées supplémentaires","Sur demande"],
+ ["Vidéo supplémentaire ou déclinaisons de format","Sur devis"],
+ ["Prestation en dehors de Paris","Supplément selon la localisation et les frais de déplacement, précisé sur le devis"],
+ ["Scénario, effets avancés ou production complexe","Sur devis"]
 ];
 const SLOTS = {1:["10:00","14:00"],2:["10:00","14:00"],3:["14:00","17:00"],4:["10:00","14:00"],5:["14:00"],6:["10:00","14:00","17:00"],0:[]}; // 0 = dimanche
 const BOOKED = ["2026-10-27 14:00"];   // créneaux déjà pris, format "AAAA-MM-JJ HH:MM"
@@ -180,7 +243,7 @@ const all = [];
 
 // hero : diaporama
 const sl = $('#slides');
-["dsc08652","dsc09829","dsc07708-2","dsc05676-2"].forEach((n,i)=>{const im=new Image();im.src=src(n);im.alt="";if(i===0)im.className="on";sl.append(im)});
+[["dsc08652","center 41%"],["dsc09829","center 3%"],["dsc07708-2","center 4%"],["dsc05676-2","center 8%"]].forEach(([n,pos],i)=>{const im=new Image();im.src=src(n);im.style.objectPosition=pos;im.alt="";if(i===0)im.className="on";sl.append(im)});
 let k=0;setInterval(()=>{const s=sl.children;s[k].classList.remove("on");k=(k+1)%s.length;s[k].classList.add("on")},4200);
 
 // séries
@@ -228,8 +291,9 @@ const JOURS=["Dimanche","Lundi","Mardi","Mercredi","Jeudi","Vendredi","Samedi"];
 const iso=d=>d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
 const mondayOf=d=>{const m=new Date(d.getFullYear(),d.getMonth(),d.getDate());m.setDate(m.getDate()-((m.getDay()+6)%7));return m};
 const base=mondayOf(new Date());let off=0,chosen=null;
-$('#svc').innerHTML=SERVICES.map(s=>`<li><div>${s.n}<span>${s.d}</span></div><strong>${s.p} €</strong></li>`).join('');
-$('#sv').innerHTML=SERVICES.map(s=>`<option>${s.n} (${s.p} €)</option>`).join('');
+$('#tarifs-list').innerHTML=OFFRES.map(g=>`<div class="grp"><h3>${g.g}</h3>${g.o.map(o=>`<details><summary><span>${o.n}</span><strong>${o.p}</strong></summary><ul>${o.l.map(x=>`<li>${x}</li>`).join('')}</ul>${o.note?`<p class="note">${o.note}</p>`:''}</details>`).join('')}</div>`).join('');
+$('#opts').innerHTML=OPTIONS.map(([a,b])=>`<li><span>${a}</span><strong>${b}</strong></li>`).join('');
+$('#sv').innerHTML=OFFRES.map(g=>`<optgroup label="${g.g}">${g.o.map(o=>`<option>${o.n} (${o.p})</option>`).join('')}</optgroup>`).join('');
 function week(){
   const g=$('#grid');g.innerHTML='';const start=new Date(base);start.setDate(start.getDate()+off*7);
   const end=new Date(start);end.setDate(end.getDate()+6);
@@ -256,10 +320,15 @@ $('#prev').onclick=()=>{off--;week()};$('#next').onclick=()=>{off++;week()};week
 $('#f').addEventListener('submit',e=>{
   e.preventDefault();
   if(!chosen){$('#msg').textContent='Choisissez d’abord un créneau dans le planning.';return}
-  const body=`Bonjour,\n\nJe souhaite réserver : ${$('#sv').value}\nCréneau : ${chosen.txt}\n\nNom : ${$('#nm').value}\nMail : ${$('#em').value}\n\nProjet :\n${$('#tx').value}`;
+  const body=`Bonjour,\n\nJe souhaite réserver : ${$('#sv').value}\nCréneau : ${chosen.txt}\n\nNom : ${$('#nm').value}\nMail : ${$('#em').value}\nLieu : ${$('#lo').value}\nParticipants : ${$('#pa').value}\n\nProjet :\n${$('#tx').value}`;
   location.href=`mailto:${EMAIL}?subject=${encodeURIComponent('Demande de réservation : '+chosen.txt)}&body=${encodeURIComponent(body)}`;
   $('#msg').textContent='Votre application de mail s’ouvre avec la demande. Envoyez-la pour la confirmer.';
 });
+
+// menu mobile
+const hd=document.querySelector('header'),mb=$('#mb');
+mb.onclick=()=>{const o=hd.classList.toggle('open');mb.textContent=o?'Fermer':'Menu';mb.setAttribute('aria-expanded',o)};
+document.querySelectorAll('#nav a').forEach(a=>a.addEventListener('click',()=>{hd.classList.remove('open');mb.textContent='Menu';mb.setAttribute('aria-expanded',false)}));
 
 // curseur
 const c=$('#cur');
