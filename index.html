@@ -242,7 +242,7 @@ header.open nav a{font:600 clamp(1.4rem,7vw,2rem) var(--d);text-decoration:none}
       <p class="tag">Une demande, une réponse rapide.</p>
       <ol class="steps">
         <li><b>01</b><span>Choisissez votre prestation et la date qui vous arrange.</span></li>
-        <li><b>02</b><span>Envoyez la demande : votre application de mail s’ouvre, il ne reste qu’à l’envoyer.</span></li>
+        <li><b>02</b><span>Envoyez la demande en un clic, directement depuis le site.</span></li>
         <li><b>03</b><span>Je vous confirme la disponibilité et le devis par mail.</span></li>
       </ol>
     </div>
@@ -261,6 +261,7 @@ header.open nav a{font:600 clamp(1.4rem,7vw,2rem) var(--d);text-decoration:none}
           <label>Participants<input id="pa" inputmode="numeric" placeholder="1"></label>
         </div>
         <label>Votre projet<textarea id="tx" rows="4" placeholder="Type de projet, inspirations, besoins particuliers…"></textarea></label>
+        <input id="hp" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
         <button class="btn" type="submit">Envoyer la demande</button>
         <p id="msg" role="status"></p>
       </form>
@@ -394,8 +395,13 @@ $('#f').addEventListener('submit',e=>{
   e.preventDefault();
   const when=`${fr(dt.value)} (${$('#hr').value.toLowerCase()})`+(dt2.value?`\nAutre date possible : ${fr(dt2.value)}`:'');
   const body=`Bonjour,\n\nJe souhaite réserver : ${$('#sv').value}\nDate souhaitée : ${when}\n\nNom : ${$('#nm').value}\nMail : ${$('#em').value}\nLieu : ${$('#lo').value}\nParticipants : ${$('#pa').value}\n\nProjet :\n${$('#tx').value}`;
-  location.href=`mailto:${EMAIL}?subject=${encodeURIComponent('Demande de réservation : '+fr(dt.value))}&body=${encodeURIComponent(body)}`;
-  $('#msg').textContent='Votre application de mail s’ouvre avec la demande. Envoyez-la, je vous réponds vite.';
+  const sub='Demande de réservation : '+fr(dt.value),btn=$('#f button[type=submit]'),msg=$('#msg');
+  btn.disabled=true;msg.textContent='Envoi en cours…';
+  fetch('https://formsubmit.co/ajax/'+EMAIL.toLowerCase(),{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},
+    body:JSON.stringify({_subject:sub,_template:'box',_captcha:'false',_replyto:$('#em').value,name:$('#nm').value,email:$('#em').value,message:body,_honey:$('#hp').value})})
+  .then(r=>r.json()).then(j=>{if(j.success==='false'||j.success===false)throw 0;msg.textContent='Merci ! Votre demande est bien envoyée, je vous réponds très vite par mail.';$('#f').reset()})
+  .catch(()=>{msg.textContent='L’envoi direct a échoué, votre application de mail s’ouvre à la place.';location.href=`mailto:${EMAIL}?subject=${encodeURIComponent(sub)}&body=${encodeURIComponent(body)}`})
+  .finally(()=>{btn.disabled=false});
 });
 
 // menu mobile
