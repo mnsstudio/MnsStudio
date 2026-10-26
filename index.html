@@ -61,18 +61,43 @@ details ul{padding:0 0 .8rem 1.1rem;opacity:.85}
 .opts{list-style:none;padding:0;margin:0 0 2rem;max-width:62ch}
 .opts li{display:flex;justify-content:space-between;gap:1.5rem;padding:.7rem 0;border-bottom:1px solid var(--line)}
 .opts strong{font-weight:500;text-align:right;opacity:.85}
-.about-grid{display:grid;grid-template-columns:minmax(0,420px) minmax(0,1fr);gap:clamp(1.5rem,4vw,4rem);align-items:start;margin-top:1.5rem}
-@media(max-width:800px){.about-grid{grid-template-columns:1fr}}
-.about-photo{margin:0}
-.about-photo img{width:100%;aspect-ratio:3/4;object-fit:cover;object-position:center 35%}
-.about-text .about-name{font:600 1.05rem var(--d);margin:0 0 1.2rem}
-.about-text p{max-width:56ch;margin:0 0 1rem}
-.gear-wrap{margin-top:1.8rem;max-width:56ch}
-.gear{list-style:none;padding:0;margin:.4rem 0 0}
-.gear li{padding:.7rem 0;border-top:1px solid var(--line)}
-.gear li:last-child{border-bottom:1px solid var(--line)}
-.about-pair{display:flex;gap:.8rem;margin-top:2rem;max-width:380px}
-.about-pair img{width:calc(50% - .4rem);aspect-ratio:4/5;object-fit:cover}
+.ab{margin-top:2rem}
+.ab-stage{display:grid}
+.ab-slide{grid-area:1/1;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(1.5rem,4vw,4.5rem);align-items:center;opacity:0;visibility:hidden;transform:translateY(24px);transition:opacity .6s,transform .6s,visibility 0s .6s}
+.ab-slide.on{opacity:1;visibility:visible;transform:none;transition:opacity .6s,transform .6s}
+.ab-slide.rev .ab-ph{order:2}
+.ab-ph{margin:0;justify-self:center;line-height:0;overflow:hidden;border-radius:18px;box-shadow:0 0 0 1px var(--line),0 30px 80px -30px rgba(26,53,255,.55)}
+.ab-ph.cut{box-shadow:none;border-radius:0;overflow:visible}
+.ab-ph.cut img{max-height:min(80vh,800px)}
+.ab-ph img{display:block;width:auto;max-width:100%;height:auto;max-height:min(66vh,620px)}
+.ab-k{font:600 .85rem var(--d);color:var(--red);letter-spacing:.08em;text-transform:uppercase;margin:0 0 1rem}
+.ab-slide .ab-lead{font:600 clamp(1.4rem,3vw,2.3rem)/1.2 var(--d);margin:0 0 1.2rem;letter-spacing:-.01em}
+.ab-lead em{font-style:normal;background:linear-gradient(90deg,var(--red),#ff7a3d);-webkit-background-clip:text;background-clip:text;color:transparent}
+.ab-p{max-width:46ch;opacity:.85;line-height:1.65;margin:0 0 1.4rem;font-size:1.05rem}
+.ab-gear{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;margin-bottom:1.6rem}
+.ab-gear .l{font:600 .8rem var(--d);opacity:.6;margin-right:.3rem}
+.chip{font:500 .8rem var(--b);padding:.45rem .8rem;border-radius:999px;border:1px solid rgba(255,255,255,.25)}
+.chips{display:flex;flex-wrap:wrap;gap:.5rem}
+.ab-cta{display:inline-block;margin-top:.4rem;background:var(--red);color:#fff;padding:.9rem 1.5rem;border-radius:999px;font:600 .95rem var(--b);text-decoration:none;transition:background .25s}
+.ab-cta:hover{background:var(--blue)}
+.ab-nav{display:flex;align-items:center;gap:1rem;margin-top:2rem}
+.ab-nav button{width:46px;height:46px;border-radius:50%;border:1.5px solid var(--ink);background:none;color:var(--ink);font-size:1.2rem;cursor:pointer;transition:background .25s,color .25s}
+.ab-nav button:hover{background:var(--ink);color:#000}
+.ab-dots{display:flex;gap:.5rem;flex:1;max-width:240px}
+.ab-dots i{flex:1;height:3px;border-radius:2px;background:var(--line);cursor:pointer;transition:background .3s}
+.ab-dots i.on{background:var(--red)}
+.ab-count{font:600 .85rem var(--d);opacity:.7;margin-left:auto}
+@media(max-width:860px){.ab-slide{grid-template-columns:1fr;gap:1.2rem;align-items:start}.ab-slide.rev .ab-ph{order:0}.ab-ph img{max-height:60vh}.ab-ph.cut img{max-height:72vh}}
+.contact .ct-list{display:grid;gap:.9rem;max-width:560px}
+.contact a.ct{display:flex;align-items:center;gap:1rem;padding:1rem 1.2rem;border:1px solid var(--line);border-radius:16px;font:inherit;word-break:normal;transition:border-color .25s,transform .25s,background .25s}
+.contact a.ct:hover{border-color:var(--red);transform:translateX(4px);background:rgba(255,255,255,.04);color:inherit}
+.ct .ic{flex:none;width:46px;height:46px;border-radius:50%;display:grid;place-items:center;background:var(--red);color:#fff}
+.ct:nth-child(2) .ic{background:linear-gradient(45deg,#f9a03c,#e1306c,#7b3fe4)}
+.ct:nth-child(3) .ic{background:#111;border:1px solid #444}
+.ct .ic svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.ct .ic svg.f{fill:currentColor;stroke:none}
+.ct strong{display:block;font:600 clamp(.95rem,2.2vw,1.2rem) var(--d);overflow-wrap:anywhere}
+.ct small{display:block;opacity:.65;font:400 .85rem/1.4 var(--b);margin-top:.15rem}
 /* réservation */
 .book{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:clamp(1.5rem,4vw,4rem);margin-top:2rem}
 @media(max-width:900px){.book{grid-template-columns:1fr}}
@@ -89,6 +114,12 @@ details ul{padding:0 0 .8rem 1.1rem;opacity:.85}
 .slot.sel{background:var(--red);border-color:var(--red);color:#fff}
 .slot:disabled{text-decoration:line-through;opacity:.35;cursor:default}
 .none{opacity:.45;font-size:.9rem}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:.8rem}
+@media(max-width:480px){.row2{grid-template-columns:1fr}}
+.steps{list-style:none;padding:0;margin:1.5rem 0 0;display:grid;gap:1rem}
+.steps li{display:grid;grid-template-columns:2.4rem 1fr;gap:.8rem;padding:1.1rem 1.2rem;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.03)}
+.steps b{font:600 .9rem var(--d);color:var(--red)}
+input[type=date]{color-scheme:dark}
 .svc{list-style:none;padding:0;margin:0 0 2rem}
 .svc li{display:flex;justify-content:space-between;gap:1rem;padding:.9rem 0;border-bottom:1px solid var(--line)}
 .svc li span{opacity:.7;display:block;font-size:.92rem}
@@ -155,21 +186,41 @@ header.open nav a{font:600 clamp(1.4rem,7vw,2rem) var(--d);text-decoration:none}
 
 <section class="sec" id="apropos">
   <h2>À propos</h2>
-  <div class="about-grid">
-    <figure class="about-photo"><img src="sacha-portrait.jpg" alt="Sacha Minassian, photographe et vidéaste, en pull tie-dye sur fond noir" loading="lazy"></figure>
-    <div class="about-text">
-      <p class="about-name">Sacha Minassian</p>
-      <p>Je suis photographe et vidéaste. Je travaille la mode, le portrait et le lifestyle avec une idée fixe : la lumière. J’aime les fonds sombres, les contrastes francs et la touche de couleur qui fait ressortir une personne.</p>
-      <p>Je fais la photo et la vidéo moi-même, de la prise de vue jusqu’à la retouche et au montage. Vous avez un seul interlocuteur pour vos portraits, vos reels et vos contenus pour les réseaux.</p>
-      <p>Je suis étudiant en BUT MMI, et j’arrive sur chaque shooting avec de l’énergie et plein d’idées. Dites-moi ce que vous imaginez, on construit le reste ensemble.</p>
-      <div class="gear-wrap" id="gear-wrap">
-        <h3>Matériel</h3>
-        <ul class="gear" id="gear"></ul>
-      </div>
-      <div class="about-pair">
-        <img src="sacha-lumiere.jpg" alt="Portrait de Sacha en lumière bleue et orange" loading="lazy">
-        <img src="sacha-fenetre.jpg" alt="Sacha de dos, en silhouette devant une fenêtre" loading="lazy">
-      </div>
+  <div class="ab" id="ab">
+    <div class="ab-stage">
+      <article class="ab-slide on">
+        <figure class="ab-ph cut"><img src="sacha-portrait.jpg" alt="Sacha Minassian en pull tie-dye sur fond noir"></figure>
+        <div>
+          <p class="ab-k">01 · Qui suis-je</p>
+          <h3 class="ab-lead">Sacha Minassian, photographe et vidéaste.</h3>
+          <p class="ab-p">Je travaille la mode, le portrait et le lifestyle. Étudiant en BUT MMI, j’arrive sur chaque shooting avec de l’énergie et plein d’idées.</p>
+          <div class="chips"><span class="chip">Mode</span><span class="chip">Portrait</span><span class="chip">Lifestyle</span><span class="chip">BUT MMI</span></div>
+        </div>
+      </article>
+      <article class="ab-slide rev">
+        <figure class="ab-ph"><img src="sacha-lumiere.jpg" alt="Portrait de Sacha en lumière bleue et orange"></figure>
+        <div>
+          <p class="ab-k">02 · Mon style</p>
+          <h3 class="ab-lead">Une idée fixe : <em>la lumière.</em></h3>
+          <p class="ab-p">J’aime les fonds sombres, les contrastes francs et la touche de couleur qui fait ressortir une personne.</p>
+          <div class="chips"><span class="chip">Contrastes</span><span class="chip">Couleurs vives</span><span class="chip">Fonds sombres</span></div>
+        </div>
+      </article>
+      <article class="ab-slide">
+        <figure class="ab-ph"><img src="sacha-fenetre.jpg" alt="Sacha de dos, en silhouette devant une fenêtre"></figure>
+        <div>
+          <p class="ab-k">03 · Ma façon de travailler</p>
+          <h3 class="ab-lead">Photo et vidéo, de A à Z.</h3>
+          <p class="ab-p">De la prise de vue à la retouche et au montage : un seul interlocuteur pour vos portraits, vos reels et vos contenus. Dites-moi ce que vous imaginez, on construit le reste ensemble.</p>
+          <a class="ab-cta" href="#reservation">Réserver un shooting</a>
+        </div>
+      </article>
+    </div>
+    <div class="ab-nav">
+      <button type="button" id="ab-prev" aria-label="Précédent">←</button>
+      <button type="button" id="ab-next" aria-label="Suivant">→</button>
+      <div class="ab-dots" id="ab-dots"><i class="on"></i><i></i><i></i></div>
+      <span class="ab-count" id="ab-count">01 / 03</span>
     </div>
   </div>
 </section>
@@ -187,18 +238,28 @@ header.open nav a{font:600 clamp(1.4rem,7vw,2rem) var(--d);text-decoration:none}
 <section class="sec" id="reservation">
   <h2>Réservation</h2>
   <div class="book">
-    <div>
-      <div class="wk"><button id="prev" aria-label="Semaine précédente">Précédente</button><strong id="wlabel"></strong><button id="next" aria-label="Semaine suivante">Suivante</button></div>
-      <div class="grid" id="grid"></div>
+    <div class="book-intro">
+      <p class="tag">Une demande, une réponse rapide.</p>
+      <ol class="steps">
+        <li><b>01</b><span>Choisissez votre prestation et la date qui vous arrange.</span></li>
+        <li><b>02</b><span>Envoyez la demande : votre application de mail s’ouvre, il ne reste qu’à l’envoyer.</span></li>
+        <li><b>03</b><span>Je vous confirme la disponibilité et le devis par mail.</span></li>
+      </ol>
     </div>
     <div>
       <form id="f">
-        <p id="pick">Choisissez un créneau dans le planning.</p>
         <label>Prestation<select id="sv" required></select></label>
+        <div class="row2">
+          <label>Date souhaitée<input id="dt" type="date" required></label>
+          <label>Moment de la journée<select id="hr"><option>Flexible</option><option>Matin</option><option>Après-midi</option><option>Soirée</option></select></label>
+        </div>
+        <label>Autre date possible (facultatif)<input id="dt2" type="date"></label>
         <label>Nom<input id="nm" required autocomplete="name"></label>
         <label>Votre mail<input id="em" type="email" required autocomplete="email"></label>
-        <label>Lieu du shooting<input id="lo" placeholder="Paris ou autre ville"></label>
-        <label>Nombre de participants<input id="pa" inputmode="numeric" placeholder="1"></label>
+        <div class="row2">
+          <label>Lieu du shooting<input id="lo" placeholder="Paris ou autre ville"></label>
+          <label>Participants<input id="pa" inputmode="numeric" placeholder="1"></label>
+        </div>
         <label>Votre projet<textarea id="tx" rows="4" placeholder="Type de projet, inspirations, besoins particuliers…"></textarea></label>
         <button class="btn" type="submit">Envoyer la demande</button>
         <p id="msg" role="status"></p>
@@ -210,8 +271,11 @@ header.open nav a{font:600 clamp(1.4rem,7vw,2rem) var(--d);text-decoration:none}
 <section class="sec contact" id="contact">
   <h2>Contact</h2><br>
   <p style="max-width:46ch;margin-bottom:1.5rem">Sacha Minassian, photographe et vidéaste freelance. Pour préparer un devis, indiquez le type de projet, la date, le lieu, le nombre de participants, vos inspirations et vos besoins particuliers.</p>
-  <a href="mailto:MNS.studioprod@gmail.com">MNS.studioprod@gmail.com</a>
-  <a href="https://instagram.com/Mns_Studio" target="_blank" rel="noopener">@Mns_Studio</a>
+  <div class="ct-list">
+    <a class="ct" href="mailto:mns.studioprod@gmail.com"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span><span><strong>mns.studioprod@gmail.com</strong><small>Devis et demandes de shooting</small></span></a>
+    <a class="ct" href="https://instagram.com/mns_studio1" target="_blank" rel="noopener"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle class="f" cx="17.5" cy="6.5" r="1"/></svg></span><span><strong>@mns_studio1</strong><small>Instagram : l’intégralité de mes travaux s’y trouve</small></span></a>
+    <a class="ct" href="https://tiktok.com/@mns_studio.off" target="_blank" rel="noopener"><span class="ic"><svg class="f" viewBox="0 0 24 24" aria-hidden="true"><path d="M16.6 3h-3.2v12.2a2.6 2.6 0 1 1-2.6-2.6c.3 0 .5 0 .8.1V9.4a5.8 5.8 0 1 0 5 5.8V8.6a6.6 6.6 0 0 0 3.8 1.2V6.6A3.8 3.8 0 0 1 16.6 3z"/></svg></span><span><strong>@mns_studio.off</strong><small>TikTok : pour mieux me découvrir</small></span></a>
+  </div>
 </section>
 </main>
 <footer>© 2026 Mns_Studio. Tous droits réservés sur les photographies. Zone principale d’intervention : Paris.</footer>
@@ -252,9 +316,6 @@ const OPTIONS = [
  ["Prestation en dehors de Paris","Supplément selon la localisation et les frais de déplacement, précisé sur le devis"],
  ["Scénario, effets avancés ou production complexe","Sur devis"]
 ];
-const SLOTS = {1:["10:00","14:00"],2:["10:00","14:00"],3:["14:00","17:00"],4:["10:00","14:00"],5:["14:00"],6:["10:00","14:00","17:00"],0:[]}; // 0 = dimanche
-const BOOKED = ["2026-10-27 14:00"];   // créneaux déjà pris, format "AAAA-MM-JJ HH:MM"
-const GEAR = ["Boîtier Sony"];            // ton matériel : ajoute une ligne par élément (objectifs, éclairage…). Liste vide = bloc masqué.
 const SERIES = [
  {t:"Concorde", m:"Robes noires au coucher du soleil, place de la Concorde.", bg:"#000", f:["dsc07734","dsc07579","dsc07583","dsc07590","dsc07661","dsc07664","dsc07606","dsc07702-2","dsc07708-2","dsc07700-2","dsc07716","dsc07725"]},
  {t:"Feu", m:"Journal brûlé, lunettes noires, lumière orange.", bg:"#1c0603", f:["dsc08652","dsc08635","dsc08602-3","dsc08659","dsc08551","dsc08554","retoucher-noir"]},
@@ -262,6 +323,8 @@ const SERIES = [
  {t:"Porte bleue", m:"Chemise à carreaux sur bleu roi.", bg:"#10229c", sb:"#4a63ff", f:["dsc09242","dsc09266","dsc09273"]},
  {t:"Rouge", m:"Un chemisier rouge, deux lumières.", bg:"#7d0a12", f:["dsc09861","dsc09867","dsc00090","dsc00102","dsc00096"]},
  {t:"Reflets", m:"Miroir et pierre éclairée en rouge.", bg:"#000", f:["dsc09829","dsc09850","dsc09855"]},
+ {t:"Néon", m:"Fisheye, escalator et lumières violettes.", bg:"#1a0f55", sb:"#a35cff", f:["neon-escalator"]},
+ {t:"Éclats", m:"Un regard derrière des branches dorées.", bg:"#000", f:["eclats-dores"]},
  {t:"Rues", m:"Contre-jour, tunnel de verre et parking.", bg:"#000", f:["dsc05676-2","dsc05865","dsc06128","dsc06231-2","dsc02429-1","dsc02856-1","finale"]}
 ];
 /* ===== FIN ===== */
@@ -295,7 +358,6 @@ document.querySelectorAll('.serie').forEach(e=>io.observe(e));
 new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)document.body.style.setProperty('--bg','#000')}),{rootMargin:'-45% 0px -45% 0px'}).observe($('#reservation'));
 
 // matériel (page À propos)
-if(GEAR.length){$('#gear').innerHTML=GEAR.map(g=>`<li>${g}</li>`).join('')}else{$('#gear-wrap').hidden=true}
 
 // glisser pour défiler
 document.querySelectorAll('.rail').forEach(r=>{
@@ -326,35 +388,14 @@ const base=mondayOf(new Date());let off=0,chosen=null;
 $('#tarifs-list').innerHTML=OFFRES.map(g=>`<div class="grp"><h3>${g.g}</h3>${g.o.map(o=>`<details><summary><span>${o.n}</span><strong>${o.p}</strong></summary><ul>${o.l.map(x=>`<li>${x}</li>`).join('')}</ul>${o.note?`<p class="note">${o.note}</p>`:''}</details>`).join('')}</div>`).join('');
 $('#opts').innerHTML=OPTIONS.map(([a,b])=>`<li><span>${a}</span><strong>${b}</strong></li>`).join('');
 $('#sv').innerHTML=OFFRES.map(g=>`<optgroup label="${g.g}">${g.o.map(o=>`<option>${o.n} (${o.p})</option>`).join('')}</optgroup>`).join('');
-function week(){
-  const g=$('#grid');g.innerHTML='';const start=new Date(base);start.setDate(start.getDate()+off*7);
-  const end=new Date(start);end.setDate(end.getDate()+6);
-  $('#wlabel').textContent=`${start.getDate()}/${start.getMonth()+1} au ${end.getDate()}/${end.getMonth()+1}`;
-  $('#prev').disabled=off===0;
-  const today=iso(new Date());
-  for(let i=0;i<7;i++){
-    const d=new Date(start);d.setDate(d.getDate()+i);const key=iso(d);
-    const wrap=document.createElement('div');wrap.className='day';
-    wrap.innerHTML=`<b>${JOURS[d.getDay()].slice(0,3)}.</b><small>${d.getDate()}/${d.getMonth()+1}</small>`;
-    const sl=(SLOTS[d.getDay()]||[]).filter(()=>key>=today);
-    if(!sl.length)wrap.insertAdjacentHTML('beforeend','<span class="none">Indisponible</span>');
-    sl.forEach(h=>{
-      const b=document.createElement('button');b.type='button';b.className='slot';b.textContent=h;
-      const id=key+' '+h;b.disabled=BOOKED.includes(id);
-      if(chosen&&chosen.id===id)b.classList.add('sel');
-      b.onclick=()=>{chosen={id,txt:`${JOURS[d.getDay()]} ${d.getDate()}/${d.getMonth()+1} à ${h}`};$('#pick').textContent='Créneau choisi : '+chosen.txt;week()};
-      wrap.append(b);
-    });
-    g.append(wrap);
-  }
-}
-$('#prev').onclick=()=>{off--;week()};$('#next').onclick=()=>{off++;week()};week();
+const dt=$('#dt'),dt2=$('#dt2');const t0=new Date();t0.setDate(t0.getDate()+1);dt.min=dt2.min=iso(t0);
+const fr=v=>{const [y,m,d]=v.split('-');const j=JOURS[new Date(v+'T12:00:00').getDay()];return `${j} ${d}/${m}/${y}`};
 $('#f').addEventListener('submit',e=>{
   e.preventDefault();
-  if(!chosen){$('#msg').textContent='Choisissez d’abord un créneau dans le planning.';return}
-  const body=`Bonjour,\n\nJe souhaite réserver : ${$('#sv').value}\nCréneau : ${chosen.txt}\n\nNom : ${$('#nm').value}\nMail : ${$('#em').value}\nLieu : ${$('#lo').value}\nParticipants : ${$('#pa').value}\n\nProjet :\n${$('#tx').value}`;
-  location.href=`mailto:${EMAIL}?subject=${encodeURIComponent('Demande de réservation : '+chosen.txt)}&body=${encodeURIComponent(body)}`;
-  $('#msg').textContent='Votre application de mail s’ouvre avec la demande. Envoyez-la pour la confirmer.';
+  const when=`${fr(dt.value)} (${$('#hr').value.toLowerCase()})`+(dt2.value?`\nAutre date possible : ${fr(dt2.value)}`:'');
+  const body=`Bonjour,\n\nJe souhaite réserver : ${$('#sv').value}\nDate souhaitée : ${when}\n\nNom : ${$('#nm').value}\nMail : ${$('#em').value}\nLieu : ${$('#lo').value}\nParticipants : ${$('#pa').value}\n\nProjet :\n${$('#tx').value}`;
+  location.href=`mailto:${EMAIL}?subject=${encodeURIComponent('Demande de réservation : '+fr(dt.value))}&body=${encodeURIComponent(body)}`;
+  $('#msg').textContent='Votre application de mail s’ouvre avec la demande. Envoyez-la, je vous réponds vite.';
 });
 
 // menu mobile
@@ -362,6 +403,14 @@ const hd=document.querySelector('header'),mb=$('#mb');
 mb.onclick=()=>{const o=hd.classList.toggle('open');mb.textContent=o?'Fermer':'Menu';mb.setAttribute('aria-expanded',o)};
 document.querySelectorAll('#nav a').forEach(a=>a.addEventListener('click',()=>{hd.classList.remove('open');mb.textContent='Menu';mb.setAttribute('aria-expanded',false)}));
 
+
+/* À propos : présentation en 3 pages */
+(function(){const sl=[...document.querySelectorAll('.ab-slide')],dots=[...document.querySelectorAll('#ab-dots i')],cnt=document.getElementById('ab-count');let c=0,x0=null;
+function go(n){c=(n+sl.length)%sl.length;sl.forEach((e,i)=>e.classList.toggle('on',i===c));dots.forEach((e,i)=>e.classList.toggle('on',i===c));cnt.textContent='0'+(c+1)+' / 0'+sl.length}
+document.getElementById('ab-prev').onclick=()=>go(c-1);document.getElementById('ab-next').onclick=()=>go(c+1);
+dots.forEach((d,i)=>d.onclick=()=>go(i));
+const st=document.querySelector('.ab-stage');st.addEventListener('touchstart',e=>{x0=e.touches[0].clientX},{passive:true});
+st.addEventListener('touchend',e=>{if(x0===null)return;const d=e.changedTouches[0].clientX-x0;if(Math.abs(d)>50)go(c+(d<0?1:-1));x0=null});})();
 </script>
 </body>
 </html>
