@@ -40,7 +40,7 @@ section{padding:clamp(4rem,10vw,8rem) 0}
 .serie{padding:clamp(3rem,7vw,6rem) 0}
 .serie h2,.sec h2{font:600 clamp(1.45rem,2.9vw,2.2rem) var(--d);line-height:1.2;letter-spacing:-.01em;padding:0 clamp(1rem,4vw,3rem);margin-bottom:.8rem}
 .serie .meta{padding:0 clamp(1rem,4vw,3rem);margin-bottom:1.8rem;max-width:46ch;opacity:.8}
-.rail{display:flex;gap:clamp(.6rem,1.4vw,1.2rem);overflow-x:auto;scroll-snap-type:x proximity;padding:0 clamp(1rem,4vw,3rem) 1rem;cursor:grab;scrollbar-width:thin;scrollbar-color:var(--red) transparent}
+.rail{display:flex;gap:clamp(.6rem,1.4vw,1.2rem);overflow-x:auto;scroll-snap-type:x proximity;padding:0 clamp(1rem,4vw,3rem) 1rem;cursor:grab;scrollbar-width:thin;scrollbar-color:var(--sb,var(--red)) transparent}
 .rail.drag{cursor:grabbing;scroll-snap-type:none}
 .rail button{flex:none;scroll-snap-align:start;border:0;padding:0;background:none;cursor:zoom-in;overflow:hidden}
 .rail img{height:min(74vh,720px);width:auto;transition:transform .8s cubic-bezier(.2,.8,.2,1),filter .4s;filter:saturate(.9)}
@@ -61,6 +61,18 @@ details ul{padding:0 0 .8rem 1.1rem;opacity:.85}
 .opts{list-style:none;padding:0;margin:0 0 2rem;max-width:62ch}
 .opts li{display:flex;justify-content:space-between;gap:1.5rem;padding:.7rem 0;border-bottom:1px solid var(--line)}
 .opts strong{font-weight:500;text-align:right;opacity:.85}
+.about-grid{display:grid;grid-template-columns:minmax(0,420px) minmax(0,1fr);gap:clamp(1.5rem,4vw,4rem);align-items:start;margin-top:1.5rem}
+@media(max-width:800px){.about-grid{grid-template-columns:1fr}}
+.about-photo{margin:0}
+.about-photo img{width:100%;aspect-ratio:3/4;object-fit:cover;object-position:center 35%}
+.about-text .about-name{font:600 1.05rem var(--d);margin:0 0 1.2rem}
+.about-text p{max-width:56ch;margin:0 0 1rem}
+.gear-wrap{margin-top:1.8rem;max-width:56ch}
+.gear{list-style:none;padding:0;margin:.4rem 0 0}
+.gear li{padding:.7rem 0;border-top:1px solid var(--line)}
+.gear li:last-child{border-bottom:1px solid var(--line)}
+.about-pair{display:flex;gap:.8rem;margin-top:2rem;max-width:380px}
+.about-pair img{width:calc(50% - .4rem);aspect-ratio:4/5;object-fit:cover}
 /* réservation */
 .book{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:clamp(1.5rem,4vw,4rem);margin-top:2rem}
 @media(max-width:900px){.book{grid-template-columns:1fr}}
@@ -121,7 +133,7 @@ header.open nav a{font:600 clamp(1.4rem,7vw,2rem) var(--d);text-decoration:none}
 <header>
   <a class="logo" href="#top">Mns_Studio</a>
   <button id="mb" class="mb" aria-expanded="false" aria-controls="nav">Menu</button>
-  <nav id="nav"><a href="#portfolio">Portfolio</a><a href="#tarifs">Tarifs</a><a href="#reservation">Réservation</a><a href="#contact">Contact</a></nav>
+  <nav id="nav"><a href="#portfolio">Portfolio</a><a href="#apropos">À propos</a><a href="#tarifs">Tarifs</a><a href="#reservation">Réservation</a><a href="#contact">Contact</a></nav>
 </header>
 
 <main id="top">
@@ -139,6 +151,27 @@ header.open nav a{font:600 clamp(1.4rem,7vw,2rem) var(--d);text-decoration:none}
 <section class="sec" id="video" hidden>
   <h2>Vidéo</h2><br>
   <iframe class="vid" id="yt" title="Vidéo Mns_Studio" allowfullscreen loading="lazy"></iframe>
+</section>
+
+<section class="sec" id="apropos">
+  <h2>À propos</h2>
+  <div class="about-grid">
+    <figure class="about-photo"><img src="sacha-portrait.jpg" alt="Sacha Minassian, photographe et vidéaste, en pull tie-dye sur fond noir" loading="lazy"></figure>
+    <div class="about-text">
+      <p class="about-name">Sacha Minassian</p>
+      <p>Je suis photographe et vidéaste. Je travaille la mode, le portrait et le lifestyle avec une idée fixe : la lumière. J’aime les fonds sombres, les contrastes francs et la touche de couleur qui fait ressortir une personne.</p>
+      <p>Je fais la photo et la vidéo moi-même, de la prise de vue jusqu’à la retouche et au montage. Vous avez un seul interlocuteur pour vos portraits, vos reels et vos contenus pour les réseaux.</p>
+      <p>Je suis étudiant en BUT MMI, et j’arrive sur chaque shooting avec de l’énergie et plein d’idées. Dites-moi ce que vous imaginez, on construit le reste ensemble.</p>
+      <div class="gear-wrap" id="gear-wrap">
+        <h3>Matériel</h3>
+        <ul class="gear" id="gear"></ul>
+      </div>
+      <div class="about-pair">
+        <img src="sacha-lumiere.jpg" alt="Portrait de Sacha en lumière bleue et orange" loading="lazy">
+        <img src="sacha-fenetre.jpg" alt="Sacha de dos, en silhouette devant une fenêtre" loading="lazy">
+      </div>
+    </div>
+  </div>
 </section>
 
 <section class="sec" id="tarifs">
@@ -221,11 +254,12 @@ const OPTIONS = [
 ];
 const SLOTS = {1:["10:00","14:00"],2:["10:00","14:00"],3:["14:00","17:00"],4:["10:00","14:00"],5:["14:00"],6:["10:00","14:00","17:00"],0:[]}; // 0 = dimanche
 const BOOKED = ["2026-10-27 14:00"];   // créneaux déjà pris, format "AAAA-MM-JJ HH:MM"
+const GEAR = ["Boîtier Sony"];            // ton matériel : ajoute une ligne par élément (objectifs, éclairage…). Liste vide = bloc masqué.
 const SERIES = [
  {t:"Concorde", m:"Robes noires au coucher du soleil, place de la Concorde.", bg:"#000", f:["dsc07734","dsc07579","dsc07583","dsc07590","dsc07661","dsc07664","dsc07606","dsc07702-2","dsc07708-2","dsc07700-2","dsc07716","dsc07725"]},
  {t:"Feu", m:"Journal brûlé, lunettes noires, lumière orange.", bg:"#1c0603", f:["dsc08652","dsc08635","dsc08602-3","dsc08659","dsc08551","dsc08554","retoucher-noir"]},
  {t:"Graffiti", m:"Cuir, chemise blanche et murs peints.", bg:"#000", f:["dsc08339","dsc08275-2","dsc08309","dsc08080","dsc08104","dsc08105"]},
- {t:"Porte bleue", m:"Chemise à carreaux sur bleu roi.", bg:"#10229c", f:["dsc09242","dsc09266","dsc09273","dsc09332"]},
+ {t:"Porte bleue", m:"Chemise à carreaux sur bleu roi.", bg:"#10229c", sb:"#4a63ff", f:["dsc09242","dsc09266","dsc09273"]},
  {t:"Rouge", m:"Un chemisier rouge, deux lumières.", bg:"#7d0a12", f:["dsc09861","dsc09867","dsc00090","dsc00102","dsc00096"]},
  {t:"Reflets", m:"Miroir et pierre éclairée en rouge.", bg:"#000", f:["dsc09829","dsc09850","dsc09855"]},
  {t:"Rues", m:"Contre-jour, tunnel de verre et parking.", bg:"#000", f:["dsc05676-2","dsc05865","dsc06128","dsc06231-2","dsc02429-1","dsc02856-1","finale"]}
@@ -244,7 +278,7 @@ let k=0;setInterval(()=>{const s=sl.children;s[k].classList.remove("on");k=(k+1)
 // séries
 const box = $('#series');
 SERIES.forEach(s=>{
-  const el=document.createElement('div');el.className='serie';el.dataset.bg=s.bg;
+  const el=document.createElement('div');el.className='serie';el.dataset.bg=s.bg;if(s.sb)el.style.setProperty('--sb',s.sb);
   el.innerHTML=`<h2>${s.t}</h2><p class="meta">${s.m}</p><div class="rail"></div>`;
   const rail=el.querySelector('.rail');
   s.f.forEach(n=>{
@@ -259,6 +293,9 @@ SERIES.forEach(s=>{
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)document.body.style.setProperty('--bg',e.target.dataset.bg)}),{rootMargin:'-45% 0px -45% 0px'});
 document.querySelectorAll('.serie').forEach(e=>io.observe(e));
 new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)document.body.style.setProperty('--bg','#000')}),{rootMargin:'-45% 0px -45% 0px'}).observe($('#reservation'));
+
+// matériel (page À propos)
+if(GEAR.length){$('#gear').innerHTML=GEAR.map(g=>`<li>${g}</li>`).join('')}else{$('#gear-wrap').hidden=true}
 
 // glisser pour défiler
 document.querySelectorAll('.rail').forEach(r=>{
