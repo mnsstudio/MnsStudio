@@ -84,10 +84,8 @@ section{padding:clamp(4rem,10vw,8rem) 0}
 .ab-slide.rev .ab-ph{order:2}
 .ab-ph{margin:0;justify-self:center;line-height:0;overflow:hidden;border-radius:18px;box-shadow:0 0 0 1px var(--line),0 30px 80px -30px rgba(26,53,255,.55)}
 .ab-ph.cut{box-shadow:none;border-radius:0;overflow:visible}
+.ab-ph.lg img{max-height:min(72vh,700px)}
 .ab-ph.cut img{max-height:min(80vh,800px)}
-.ab-ph.neon{position:relative;overflow:hidden;border-radius:22px;box-shadow:0 0 0 1.5px #2f4bff,0 0 24px 2px rgba(47,75,255,.9),0 0 90px 10px rgba(26,53,255,.5)}
-.ab-ph.neon img{max-height:min(62vh,600px);filter:contrast(1.05) brightness(.95)}
-.ab-ph.neon::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;box-shadow:inset 0 0 70px 38px #000,inset 0 0 14px 6px #000}
 .ab-ph img{display:block;width:auto;max-width:100%;height:auto;max-height:min(66vh,620px)}
 .ab-k{font:600 .85rem var(--d);color:var(--red);letter-spacing:.08em;text-transform:uppercase;margin:0 0 1rem}
 .ab-slide .ab-lead{font:600 clamp(1.4rem,3vw,2.3rem)/1.2 var(--d);margin:0 0 1.2rem;letter-spacing:-.01em}
@@ -106,7 +104,7 @@ section{padding:clamp(4rem,10vw,8rem) 0}
 .ab-dots i{flex:1;height:3px;border-radius:2px;background:var(--line);cursor:pointer;transition:background .3s}
 .ab-dots i.on{background:var(--red)}
 .ab-count{font:600 .85rem var(--d);opacity:.7;margin-left:auto}
-@media(max-width:860px){.ab-slide{grid-template-columns:1fr;gap:1.2rem;align-items:start}.ab-slide.rev .ab-ph{order:0}.ab-ph img{max-height:60vh}.ab-ph.cut img{max-height:72vh}.ab-ph.neon img{max-height:52vh}}
+@media(max-width:860px){.ab-slide{grid-template-columns:1fr;gap:1.2rem;align-items:start}.ab-slide.rev .ab-ph{order:0}.ab-ph img{max-height:60vh}.ab-ph.cut img{max-height:72vh}.ab-ph.lg img{max-height:56vh}}
 .contact .ct-list{display:grid;gap:.9rem;max-width:560px}
 .contact a.ct{display:flex;align-items:center;gap:1rem;padding:1rem 1.2rem;border:1px solid var(--line);border-radius:16px;font:inherit;word-break:normal;transition:border-color .25s,transform .25s,background .25s}
 .contact a.ct:hover{border-color:var(--red);transform:translateX(4px);background:rgba(255,255,255,.04);color:inherit}
@@ -217,7 +215,7 @@ header.open nav a{font:600 clamp(1.4rem,7vw,2rem) var(--d);text-decoration:none}
         </div>
       </article>
       <article class="ab-slide rev">
-        <figure class="ab-ph neon"><img src="sacha-lumiere.jpg?v=3" alt="Portrait de Sacha en lumière bleue et orange"></figure>
+        <figure class="ab-ph lg"><img src="sacha-lumiere.jpg?v=3" alt="Portrait de Sacha en lumière bleue et orange"></figure>
         <div>
           <p class="ab-k">02 · Mon style</p>
           <h3 class="ab-lead">Tout part de <em>la lumière.</em></h3>
@@ -229,8 +227,9 @@ header.open nav a{font:600 clamp(1.4rem,7vw,2rem) var(--d);text-decoration:none}
         <figure class="ab-ph"><img src="sacha-fenetre.jpg" alt="Sacha de dos, en silhouette devant une fenêtre"></figure>
         <div>
           <p class="ab-k">03 · Ma façon de travailler</p>
-          <h3 class="ab-lead">De l’idée au rendu final, je gère tout.</h3>
+          <h3 class="ab-lead">Avec vous, <em>de A à Z.</em></h3>
           <p class="ab-p">Prise de vue, retouche, montage vidéo, un seul interlocuteur vraiment humain et des images prêtes pour vous définir.</p>
+          <div class="chips" style="margin-bottom:1.6rem"><span class="chip">Humain</span><span class="chip">Ambitieux</span><span class="chip">Perfectionniste</span></div>
           <a class="ab-cta" href="#reservation">Réserver un shooting</a>
         </div>
       </article>
