@@ -279,3 +279,8 @@ html.entering .curtain .logo,.curtain.leaving .logo{opacity:1}
 .reelbox .p i{animation:pulse 2.4s ease-out infinite}
 @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(255,34,54,.5)}100%{box-shadow:0 0 0 30px rgba(255,34,54,0)}}
 @media(prefers-reduced-motion:reduce){.curtain,.pgbar{display:none}.mqt,.reelbox .p i{animation:none}.js .wi,.js .hero .w>*,.js .ph .w>*,.js .hero>img{transform:none!important;opacity:1!important}.js .card.rv .im,.js .gal figure.rv .im,.js .vrow.rv .im,.js .split .im.rv{clip-path:none!important}.js .rv .im img,.js .split .im.rv img{transform:none!important}}
+/* accueil : bannière entièrement visible dès l'arrivée */
+.hero{min-height:100svh}
+.hero .w{padding-block:clamp(6rem,14vh,9rem) clamp(1.6rem,5vh,4rem);gap:clamp(1rem,2.6vh,2.2rem)}
+.hero h1{font-size:clamp(2.4rem,min(7.4vw,11vh),5.6rem)}
+.hero .lead{font-size:clamp(1rem,2.2vh,1.2rem)}
