@@ -3,444 +3,78 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Mns_Studio – Photo et vidéo, mode et lifestyle</title>
-<meta name="description" content="Mns_Studio, Sacha Minassian : photographe et vidéaste freelance. Mode, portrait, lifestyle. Réservez un shooting.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;600;700&family=Instrument+Sans:wght@400;500&display=swap" rel="stylesheet">
-<style>
-:root{--bg:#000;--ink:#f3efe8;--red:#ff1f2d;--blue:#1a35ff;--line:rgba(243,239,232,.22);--d:'Unbounded','Arial Black','Helvetica Neue',Arial,sans-serif;--b:'Instrument Sans','Helvetica Neue',Arial,sans-serif}
-*{box-sizing:border-box;margin:0}
-html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--ink);font:400 1.05rem/1.6 var(--b);transition:background .9s ease;overflow-x:hidden}
-img{display:block;max-width:100%}
-a{color:inherit}
-:focus-visible{outline:2px solid var(--red);outline-offset:3px}
-header{position:fixed;inset:0 0 auto;z-index:20;display:flex;justify-content:space-between;align-items:center;padding:1.1rem clamp(1rem,4vw,3rem);color:#fff;background:linear-gradient(to bottom,rgba(0,0,0,.65),transparent)}
-header a{text-decoration:none;font-weight:500}
-header nav{display:flex;gap:clamp(1rem,3vw,2.2rem)}
-header nav a:hover{text-decoration:underline;text-decoration-thickness:2px}
-.logo{font:600 1.02rem var(--d);letter-spacing:0}
-/* hero */
-.hero{position:relative;min-height:100svh;display:grid;align-items:end;align-content:end;padding:0 clamp(1rem,4vw,3rem) clamp(1.5rem,5vh,3rem);overflow:hidden}
-.hero .bg{position:absolute;inset:0;z-index:0}
-.hero .bg img{position:absolute;right:0;top:0;height:100%;width:min(54%,980px);object-fit:cover;opacity:0;transition:opacity 1.6s ease}
-.hero .bg img.on{opacity:1}
-.hero h1{position:relative;z-index:2;font:600 clamp(1.8rem,3.9vw,3.4rem) var(--d);line-height:1.15;letter-spacing:-.01em;color:#fff;overflow:hidden;padding-bottom:.1em}
-.hero h1 span{display:inline-block;transform:translateY(105%);animation:up 1.1s cubic-bezier(.2,.8,.2,1) forwards}
-@keyframes up{to{transform:none}}
-.hero .row{position:relative;z-index:2;display:flex;flex-wrap:wrap;justify-content:space-between;gap:1rem;align-items:end;margin-top:1.5rem}
-.hero p{max-width:30ch;font-size:1.1rem;line-height:1.4;color:#fff}
-.btn{display:inline-block;padding:.9rem 1.6rem;background:var(--red);color:#fff;font:700 1rem var(--b);border:0;text-decoration:none;cursor:pointer;transition:background .25s,transform .25s}
-.btn:hover{background:var(--blue)}
-.btn.ghost{background:transparent;border:1.5px solid var(--ink);color:var(--ink)}
-.btn.ghost:hover{background:var(--ink);color:#000}
-/* series */
-section{padding:clamp(4rem,10vw,8rem) 0}
-.serie{padding:clamp(3rem,7vw,6rem) 0}
-.serie h2,.sec h2{font:600 clamp(1.45rem,2.9vw,2.2rem) var(--d);line-height:1.2;letter-spacing:-.01em;padding:0 clamp(1rem,4vw,3rem);margin-bottom:.8rem}
-.serie .meta{padding:0 clamp(1rem,4vw,3rem);margin-bottom:1.8rem;max-width:46ch;opacity:.8}
-.rail{display:flex;gap:clamp(.6rem,1.4vw,1.2rem);overflow-x:auto;scroll-snap-type:x proximity;padding:0 clamp(1rem,4vw,3rem) 1rem;cursor:grab;scrollbar-width:thin;scrollbar-color:var(--sb,var(--red)) transparent}
-.rail.drag{cursor:grabbing;scroll-snap-type:none}
-.rail button{flex:none;scroll-snap-align:start;border:0;padding:0;background:none;cursor:zoom-in;overflow:hidden}
-.rail img{height:min(74vh,720px);width:auto;transition:transform .8s cubic-bezier(.2,.8,.2,1),filter .4s;filter:saturate(.9)}
-.rail button:hover img{transform:scale(1.04);filter:none}
-.sec{padding:clamp(4rem,10vw,8rem) clamp(1rem,4vw,3rem)}
-.sec h2{padding:0}
-.tag{font:500 clamp(.95rem,1.5vw,1.1rem) var(--d);line-height:1.5;max-width:28ch;margin:1rem 0}
-.tarifs-grid{display:grid;gap:clamp(3.5rem,7vw,6rem)}
-.cat-h{display:flex;align-items:baseline;gap:1.2rem;margin:0 0 2rem;padding-bottom:1.2rem;border-bottom:1px solid var(--line)}
-.cat-h h3{font:600 clamp(1.3rem,2.4vw,1.9rem)/1.1 var(--d);margin:0}
-.cat-h span{font:600 .8rem var(--d);color:var(--red);letter-spacing:.08em}
-.sub{margin-bottom:3rem}
-.sub:last-child{margin-bottom:0}
-.sub-t{font:600 .85rem var(--d);letter-spacing:.06em;text-transform:uppercase;opacity:.65;margin:0 0 1.2rem}
-.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,290px),1fr));gap:1.4rem}
-.card{display:flex;flex-direction:column;padding:1.8rem 1.6rem;border:1px solid var(--line);border-radius:18px;background:rgba(255,255,255,.03);transition:border-color .3s,transform .3s,background .3s}
-.card:hover{border-color:var(--red);transform:translateY(-4px);background:rgba(255,255,255,.05)}
-.card h4{font:500 1.05rem var(--b);margin:0 0 .6rem;opacity:.9}
-.card .price{font:600 clamp(1.7rem,2.6vw,2.2rem)/1.1 var(--d);margin:0 0 1.4rem;letter-spacing:-.01em}
-.card .price small{font:500 .9rem var(--b);opacity:.6;letter-spacing:0}
-.card ul{list-style:none;margin:0;padding:1.2rem 0 0;border-top:1px solid var(--line);display:grid;gap:.7rem;font-size:.95rem;line-height:1.45;opacity:.85}
-.card li{position:relative;padding-left:1.3rem}
-.card li::before{content:"";position:absolute;left:0;top:.55em;width:.5rem;height:.5rem;border-radius:50%;background:var(--red)}
-.card.devis{border-style:dashed}
-.card.devis{grid-column:1/-1;display:grid;grid-template-columns:minmax(220px,340px) 1fr;grid-template-rows:auto auto;column-gap:2.5rem;align-items:center}
-.card.devis h4{grid-column:1;grid-row:1;margin:0 0 .4rem}
-.card.devis .price{grid-column:1;grid-row:2;margin:0}
-.card.devis ul{grid-column:2;grid-row:1/3;border-top:0;padding:0}
-@media(max-width:700px){.card.devis{grid-template-columns:1fr}.card.devis .price{margin-bottom:1.2rem}.card.devis ul{grid-column:1;grid-row:auto;border-top:1px solid var(--line);padding-top:1.2rem}}
-.card .note{margin:1rem 0 0;padding:0}
-.note{font-size:.9rem;opacity:.65;padding-bottom:.9rem}
-.opts{list-style:none;padding:0;margin:0 0 2.5rem;display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,360px),1fr));gap:1.2rem}
-.opts li{display:grid;gap:.4rem;padding:1.4rem 1.5rem;border:1px solid var(--line);border-radius:16px}
-.opts li span{font-weight:600}
-.opts strong{font-weight:400;opacity:.75;line-height:1.45}
-.zone{max-width:none;padding:1.2rem 1.5rem;border:1px solid var(--line);border-left:3px solid var(--red);border-radius:12px;background:rgba(255,255,255,.03);margin:2rem 0 4rem;opacity:1}
-.ab{margin-top:2rem}
-.ab-stage{display:grid}
-.ab-slide{grid-area:1/1;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(1.5rem,4vw,4.5rem);align-items:center;opacity:0;visibility:hidden;transform:translateY(24px);transition:opacity .6s,transform .6s,visibility 0s .6s}
-.ab-slide.on{opacity:1;visibility:visible;transform:none;transition:opacity .6s,transform .6s}
-.ab-slide.rev .ab-ph{order:2}
-.ab-ph{margin:0;justify-self:center;line-height:0;overflow:hidden;border-radius:18px;box-shadow:0 0 0 1px var(--line),0 30px 80px -30px rgba(26,53,255,.55)}
-.ab-ph.cut{box-shadow:none;border-radius:0;overflow:visible}
-.ab-ph.lg img{max-height:min(72vh,700px)}
-.ab-ph.cut img{max-height:min(80vh,800px)}
-.ab-ph img{display:block;width:auto;max-width:100%;height:auto;max-height:min(66vh,620px)}
-.ab-k{font:600 .85rem var(--d);color:var(--red);letter-spacing:.08em;text-transform:uppercase;margin:0 0 1rem}
-.ab-slide .ab-lead{font:600 clamp(1.4rem,3vw,2.3rem)/1.2 var(--d);margin:0 0 1.2rem;letter-spacing:-.01em}
-.ab-lead em{font-style:normal;background:linear-gradient(90deg,var(--red),#ff7a3d);-webkit-background-clip:text;background-clip:text;color:transparent}
-.ab-p{max-width:46ch;opacity:.85;line-height:1.65;margin:0 0 1.4rem;font-size:1.05rem}
-.ab-gear{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;margin-bottom:1.6rem}
-.ab-gear .l{font:600 .8rem var(--d);opacity:.6;margin-right:.3rem}
-.chip{font:500 .8rem var(--b);padding:.45rem .8rem;border-radius:999px;border:1px solid rgba(255,255,255,.25)}
-.chips{display:flex;flex-wrap:wrap;gap:.5rem}
-.ab-cta{display:inline-block;margin-top:.4rem;background:var(--red);color:#fff;padding:.9rem 1.5rem;border-radius:999px;font:600 .95rem var(--b);text-decoration:none;transition:background .25s}
-.ab-cta:hover{background:var(--blue)}
-.ab-nav{display:flex;align-items:center;gap:1rem;margin-top:2rem}
-.ab-nav button{width:46px;height:46px;border-radius:50%;border:1.5px solid var(--ink);background:none;color:var(--ink);font-size:1.2rem;cursor:pointer;transition:background .25s,color .25s}
-.ab-nav button:hover{background:var(--ink);color:#000}
-.ab-dots{display:flex;gap:.5rem;flex:1;max-width:240px}
-.ab-dots i{flex:1;height:3px;border-radius:2px;background:var(--line);cursor:pointer;transition:background .3s}
-.ab-dots i.on{background:var(--red)}
-.ab-count{font:600 .85rem var(--d);opacity:.7;margin-left:auto}
-@media(max-width:860px){.ab-slide{grid-template-columns:1fr;gap:1.2rem;align-items:start}.ab-slide.rev .ab-ph{order:0}.ab-ph img{max-height:60vh}.ab-ph.cut img{max-height:72vh}.ab-ph.lg img{max-height:56vh}}
-.contact .ct-list{display:grid;gap:.9rem;max-width:560px}
-.contact a.ct{display:flex;align-items:center;gap:1rem;padding:1rem 1.2rem;border:1px solid var(--line);border-radius:16px;font:inherit;word-break:normal;transition:border-color .25s,transform .25s,background .25s}
-.contact a.ct:hover{border-color:var(--red);transform:translateX(4px);background:rgba(255,255,255,.04);color:inherit}
-.ct .ic{flex:none;width:46px;height:46px;border-radius:50%;display:grid;place-items:center;background:var(--red);color:#fff}
-.ct:nth-child(2) .ic{background:linear-gradient(45deg,#f9a03c,#e1306c,#7b3fe4)}
-.ct:nth-child(3) .ic{background:#111;border:1px solid #444}
-.ct .ic svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
-.ct .ic svg.f{fill:currentColor;stroke:none}
-.ct strong{display:block;font:600 clamp(.95rem,2.2vw,1.2rem) var(--d);overflow-wrap:anywhere}
-.ct small{display:block;opacity:.65;font:400 .85rem/1.4 var(--b);margin-top:.15rem}
-/* réservation */
-.book{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:clamp(1.5rem,4vw,4rem);margin-top:2rem}
-@media(max-width:900px){.book{grid-template-columns:1fr}}
-.wk{display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;gap:1rem}
-.wk button{background:none;border:1.5px solid var(--ink);color:var(--ink);padding:.4rem .9rem;cursor:pointer;font:500 1rem var(--b)}
-.wk button:hover:not(:disabled){background:var(--ink);color:#000}.wk button:disabled{opacity:.3;cursor:default}
-.grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:.5rem}
-@media(max-width:700px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
-.day{border-top:2px solid var(--ink);padding-top:.6rem}
-.day b{display:block;font:700 1rem var(--b)}
-.day small{opacity:.65;display:block;margin-bottom:.6rem}
-.slot{display:block;width:100%;margin-bottom:.4rem;padding:.5rem;background:none;color:var(--ink);border:1.5px solid var(--line);font:500 .95rem var(--b);cursor:pointer;transition:all .2s}
-.slot:hover:not(:disabled){border-color:var(--red)}
-.slot.sel{background:var(--red);border-color:var(--red);color:#fff}
-.slot:disabled{text-decoration:line-through;opacity:.35;cursor:default}
-.none{opacity:.45;font-size:.9rem}
-.row2{display:grid;grid-template-columns:1fr 1fr;gap:.8rem}
-@media(max-width:480px){.row2{grid-template-columns:1fr}}
-.steps{list-style:none;padding:0;margin:1.5rem 0 0;display:grid;gap:1rem}
-.steps li{display:grid;grid-template-columns:2.4rem 1fr;gap:.8rem;padding:1.1rem 1.2rem;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.03)}
-.steps b{font:600 .9rem var(--d);color:var(--red)}
-input[type=date]{color-scheme:dark}
-.svc{list-style:none;padding:0;margin:0 0 2rem}
-.svc li{display:flex;justify-content:space-between;gap:1rem;padding:.9rem 0;border-bottom:1px solid var(--line)}
-.svc li span{opacity:.7;display:block;font-size:.92rem}
-.svc strong{font:800 1.5rem var(--d);white-space:nowrap}
-form{display:grid;gap:.8rem}
-label{display:grid;gap:.25rem;font-weight:500}
-input,select,textarea{width:100%;padding:.8rem;background:rgba(255,255,255,.06);border:1.5px solid var(--line);color:var(--ink);font:400 1rem var(--b)}
-select option{color:#000}
-input:focus,select:focus,textarea:focus{border-color:var(--red);outline:0}
-#pick{min-height:1.5em;color:var(--red);font-weight:500}
-#msg{min-height:1.4em}
-.vid{aspect-ratio:16/9;width:100%;border:0}
-.contact a{font:600 clamp(.9rem,2.2vw,1.5rem) var(--d);letter-spacing:0;display:block;line-height:1.1;text-decoration:none;word-break:break-all}
-.contact a:hover{color:var(--red)}
-footer{padding:2rem clamp(1rem,4vw,3rem);opacity:.6;font-size:.9rem}
-/* lightbox */
-#lb{position:fixed;inset:0;z-index:50;background:rgba(0,0,0,.94);display:none;place-items:center}
-#lb.on{display:grid;animation:fade .3s}
-@keyframes fade{from{opacity:0}}
-#lb img{max-height:92vh;max-width:92vw;object-fit:contain}
-#lb button{position:absolute;background:none;border:0;color:#fff;font:700 2.4rem var(--b);cursor:pointer;padding:1rem}
-#lb .x{top:0;right:0}#lb .p{left:0}#lb .n{right:0}
-.mb{display:none}
-@media(max-width:700px){
-header{mix-blend-mode:normal;padding:.7rem 1rem}
-header::before{content:"";position:absolute;inset:0;background:rgba(0,0,0,.82);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);z-index:-1}
-.logo{position:relative;z-index:3;font-size:1rem}
-.mb{display:block;position:relative;z-index:3;min-height:46px;min-width:96px;padding:0 1.2rem;background:var(--red);color:#fff;border:0;font:700 1.05rem var(--b);cursor:pointer}
-header nav{display:none}
-header.open nav{display:flex;position:fixed;inset:0;z-index:2;flex-direction:column;justify-content:center;gap:1.2rem;padding:2rem 1.5rem;background:#000}
-header.open nav a{font:600 clamp(1.4rem,7vw,2rem) var(--d);text-decoration:none}
-.hero .bg img{left:0;right:auto;width:100%}
-.hero .bg::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.9),rgba(0,0,0,.05) 62%)}
-
-.hero .row>div{width:100%;display:grid;gap:.6rem;text-align:center}
-.hero .btn{padding:1rem 1.2rem;font-size:1.05rem}
-}
-@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.hero h1 span{transform:none}html{scroll-behavior:auto}}
-</style>
+<title>Mns_Studio, photographe et vidéaste à Paris</title>
+<meta name="description" content="Photographe et vidéaste à Paris : photographie de mode, captation événementielle, contenus courts. Demandez votre devis.">
+<meta property="og:title" content="Mns_Studio, photographe et vidéaste à Paris"><meta property="og:description" content="Photographe et vidéaste à Paris : photographie de mode, captation événementielle, contenus courts. Demandez votre devis."><meta property="og:type" content="website"><meta property="og:image" content="https://mns-studio.fr/img/dsc08339.jpg"><meta property="og:url" content="https://mns-studio.fr/"><meta property="og:locale" content="fr_FR"><meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://mns-studio.fr/">
+<meta name="theme-color" content="#060606">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script>document.documentElement.classList.add("js");if(!matchMedia("(prefers-reduced-motion:reduce)").matches)document.documentElement.classList.add("entering")</script>
+<link rel="stylesheet" href="style.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "ProfessionalService", "name": "Mns_Studio", "description": "Photographe et vidéaste à Paris : photo de mode, portrait, captation de défilé, captation d'événement, reels.", "areaServed": "Île-de-France", "email": "mns.studioprod@gmail.com", "sameAs": ["https://www.instagram.com/mns_studio1", "https://www.tiktok.com/@mns_studio.off"], "founder": {"@type": "Person", "name": "Sacha Minassian"}}</script>
 </head>
 <body>
-<header>
-  <a class="logo" href="#top">Mns_Studio</a>
-  <button id="mb" class="mb" aria-expanded="false" aria-controls="nav">Menu</button>
-  <nav id="nav"><a href="#portfolio">Portfolio</a><a href="#apropos">À propos</a><a href="#tarifs">Tarifs</a><a href="#reservation">Réservation</a><a href="#contact">Contact</a></nav>
-</header>
+<div class="curtain" aria-hidden="true"><span class="logo"><b>Mns</b><i></i><em>Studio</em></span></div><div class="pgbar" aria-hidden="true"></div>
+<a class="hp" href="#main">Aller au contenu</a>
+<header class="hd"><div class="w"><a class="logo" href="index.html" aria-label="Mns_Studio, accueil"><b>Mns</b><i></i><em>Studio</em></a><button class="bg" aria-label="Menu" aria-expanded="false"><span></span></button><nav class="nv" aria-label="Navigation"><a href="photo.html">Photo</a><a href="video.html">Vidéo</a><a href="a-propos.html">À propos</a><a href="contact.html">Contact</a><a class="pill" href="devis.html">Demander un devis</a></nav></div></header>
+<main id="main">
 
-<main id="top">
-<div class="hero">
-  <div class="bg" id="slides"></div>
-  <h1 aria-label="Mns_Studio"><span>Mns_</span><span style="animation-delay:.12s">Studio</span></h1>
-  <div class="row">
-    <p>Photo et vidéo, mode et lifestyle.</p>
-    <div><a class="btn" href="#reservation">Réserver un shooting</a> <a class="btn ghost" href="#portfolio">Voir le portfolio</a></div>
-  </div>
-</div>
+<section class="hero"><img src="img/dsc08339.jpg" alt="Portrait de mode devant un mur de graffitis"><div class="w">
+<span class="eyebrow" style="margin:0;color:#fff">Photographe et vidéaste · Paris</span>
+<h1>Des images qui racontent <em>votre</em> histoire.</h1>
+<p class="lead">Photographie, captation événementielle et contenus courts pour les marques et les créateurs. Un seul interlocuteur, de l’idée à la livraison.</p>
+<div class="cta"><a class="btn r" href="devis.html">Demander un devis</a><a class="btn o" href="photo.html">Voir les réalisations</a></div></div></section>
+<div class="mq" aria-hidden="true"><div class="mqt"><span>Mode</span><span>Portrait</span><span>Lifestyle</span><span>Captation événementielle</span><span>Contenu court</span><span>Paris</span><span>Mode</span><span>Portrait</span><span>Lifestyle</span><span>Captation événementielle</span><span>Contenu court</span><span>Paris</span></div></div>
+<div class="w args rv">
+<div><span class="n">01</span><b>Un interlocuteur unique</b><span>Vous parlez à la même personne du premier échange à la livraison.</span></div>
+<div><span class="n">02</span><b>Une image soignée</b><span>Lumière, cadrage et étalonnage travaillés pour une identité qui se remarque.</span></div>
+<div><span class="n">03</span><b>Un devis clair</b><span>Vous décrivez votre projet, je vous réponds avec une proposition précise.</span></div></div>
 
-<section id="portfolio" style="padding-bottom:0"><div id="series"></div></section>
+<section class="sec"><div class="w"><div class="head rv"><span class="eyebrow">Réalisations</span><h2>Quelques séries <em>récentes</em></h2><p class="lead">Des shootings mode et lifestyle réalisés à Paris. L’ensemble se retrouve dans le portfolio.</p></div>
+<div class="cards">
+<a class="card rv" href="photo.html"><div class="im"><img src="img/dsc09829.jpg" alt="Série Reflets" loading="lazy"></div><div class="tx"><span class="tag">Photo · Mode</span><h3>Reflets</h3></div></a>
+<a class="card rv" href="photo.html"><div class="im"><img src="img/dsc07734.jpg" alt="Série Concorde" loading="lazy"></div><div class="tx"><span class="tag">Photo · Mode</span><h3>Concorde</h3></div></a>
+<a class="card rv" href="photo.html"><div class="im"><img src="img/dsc09242.jpg" alt="Série Porte bleue" loading="lazy"></div><div class="tx"><span class="tag">Photo · Lifestyle</span><h3>Porte bleue</h3></div></a></div>
+<div class="cta rv" style="margin-top:4rem"><a class="btn o" href="photo.html">Tout le portfolio photo</a></div></div></section>
 
-<section class="sec" id="video" hidden>
-  <h2>Vidéo</h2><br>
-  <iframe class="vid" id="yt" title="Vidéo Mns_Studio" allowfullscreen loading="lazy"></iframe>
-</section>
+<section class="sec" style="background:var(--bg2)"><div class="w"><div class="head rv"><span class="eyebrow">Expertises</span><h2>Ce que je <em>réalise</em> pour vous</h2></div>
+<div class="exp">
+<div class="ex rv"><span class="n">01</span><h3>Photographie</h3><p>Mode, portrait et lifestyle : shootings solo, duo ou groupe, en studio ou en extérieur, avec une direction artistique claire.</p><ul><li>Lookbooks et séries éditoriales</li><li>Portraits professionnels et lifestyle</li><li>Livraison express en 48 h</li></ul><a class="more" href="devis.html#photo">Demander un devis →</a></div>
+<div class="ex rv"><span class="n">02</span><h3>Captation événementielle</h3><p>Défilés, vernissages, soirées, salons ou concerts : l’événement filmé fidèlement, puis monté pour vos réseaux.</p><ul><li>Film souvenir ou captation complète</li><li>Teaser court et aftermovie</li><li>Photos de l’événement en option</li></ul><a class="more" href="devis.html#event">Demander un devis →</a></div>
+<div class="ex rv"><span class="n">03</span><h3>Contenu court</h3><p>Des vidéos verticales pensées pour Instagram et TikTok, avec un rythme et un style qui vous ressemblent.</p><ul><li>Reel ou TikTok à l’unité</li><li>Abonnement mensuel Monthly Creator</li><li>Sous-titres et montage dynamique</li></ul><a class="more" href="devis.html#reel">Demander un devis →</a></div>
+</div></div></section>
 
-<section class="sec" id="apropos">
-  <h2>À propos</h2>
-  <div class="ab" id="ab">
-    <div class="ab-stage">
-      <article class="ab-slide on">
-        <figure class="ab-ph cut"><img src="sacha-portrait.jpg?v=3" alt="Sacha Minassian en pull tie-dye sur fond noir"></figure>
-        <div>
-          <p class="ab-k">01 · Qui suis-je</p>
-          <h3 class="ab-lead">Sacha Minassian, <em style="white-space:nowrap">Photographe / Vidéaste</em></h3>
-          <p class="ab-p">Photographe et vidéaste freelance à Paris, je crée des images de mode, de portrait et de lifestyle qui ont du caractère. Étudiant en BUT MMI, j’ai lancé Mns_Studio avec une envie simple : faire des images dont on se souvient.</p>
-          <div class="chips"><span class="chip">Mode</span><span class="chip">Portrait</span><span class="chip">Lifestyle</span><span class="chip">BUT MMI</span></div>
-        </div>
-      </article>
-      <article class="ab-slide rev">
-        <figure class="ab-ph lg"><img src="sacha-lumiere.jpg?v=3" alt="Portrait de Sacha en lumière bleue et orange"></figure>
-        <div>
-          <p class="ab-k">02 · Mon style</p>
-          <h3 class="ab-lead">Tout part de <em>la lumière.</em></h3>
-          <p class="ab-p">Un faisceau, une ombre, une couleur qui claque : c’est là que naît une image.</p>
-          <div class="chips"><span class="chip">Contrastes</span><span class="chip">Couleurs vives</span><span class="chip">Fonds sombres</span></div>
-        </div>
-      </article>
-      <article class="ab-slide">
-        <figure class="ab-ph"><img src="sacha-fenetre.jpg" alt="Sacha de dos, en silhouette devant une fenêtre"></figure>
-        <div>
-          <p class="ab-k">03 · Ma façon de travailler</p>
-          <h3 class="ab-lead">Avec vous, <em>de A à Z.</em></h3>
-          <p class="ab-p">Prise de vue, retouche, montage vidéo, un seul interlocuteur vraiment humain et des images prêtes pour vous définir.</p>
-          <div class="chips" style="margin-bottom:1.6rem"><span class="chip">Humain</span><span class="chip">Ambitieux</span><span class="chip">Perfectionniste</span></div>
-          <a class="ab-cta" href="#reservation">Réserver un shooting</a>
-        </div>
-      </article>
-    </div>
-    <div class="ab-nav">
-      <button type="button" id="ab-prev" aria-label="Précédent">←</button>
-      <button type="button" id="ab-next" aria-label="Suivant">→</button>
-      <div class="ab-dots" id="ab-dots"><i class="on"></i><i></i><i></i></div>
-      <span class="ab-count" id="ab-count">01 / 03</span>
-    </div>
-  </div>
-</section>
+<section class="sec"><div class="w"><div class="head rv"><span class="eyebrow">Méthode</span><h2>Un projet, <em>quatre</em> étapes</h2></div>
+<div class="steps">
+<div class="st rv"><span class="n">01</span><h3>Le brief</h3><p>Vous décrivez votre projet dans le formulaire de devis. Je vous réponds sous 48 h.</p></div>
+<div class="st rv"><span class="n">02</span><h3>La préparation</h3><p>Repérage, références, planning : je prépare le tournage avec vous.</p></div>
+<div class="st rv"><span class="n">03</span><h3>Le tournage</h3><p>Je suis sur place, discret et efficace, pour capter les bons moments.</p></div>
+<div class="st rv"><span class="n">04</span><h3>La livraison</h3><p>Montage, retouche et étalonnage, puis livraison dans le délai convenu.</p></div></div></div></section>
 
-<section class="sec" id="tarifs">
-  <h2>Tarifs</h2>
-  <p class="tag">Des images qui racontent une histoire. Des vidéos qui marquent les esprits.</p>
-  <p class="zone"><strong>Zone principale d’intervention : Paris.</strong> Toute prestation réalisée en dehors de Paris entraîne un supplément tarifaire calculé selon la localisation et les frais de déplacement. Ce supplément sera précisé sur le devis avant confirmation de la réservation.</p>
-  <div class="tarifs-grid" id="tarifs-list"></div>
-  <div class="cat-h" style="margin-top:5rem"><h3>Options</h3><span>EN PLUS</span></div>
-  <ul class="opts" id="opts"></ul>
-  <p class="note">Les tarifs et prestations sont à confirmer sur le devis. Les conditions de réservation, de paiement, de modification, de livraison et d’utilisation des images sont précisées dans les documents contractuels applicables.</p>
-</section>
+<section class="sec" style="background:var(--bg2)"><div class="w split">
+<div class="im rv"><img src="img/sacha-portrait.jpg" alt="Sacha Minassian, photographe et vidéaste" loading="lazy"></div>
+<div class="tx rv"><span class="eyebrow" style="margin:0">À propos</span><h2>Sacha Minassian, <em>photographe</em> et vidéaste</h2>
+<p class="lead">Tout part de la lumière. J’accompagne les marques, créateurs et organisateurs avec un seul interlocuteur et des images prêtes à être publiées.</p>
+<div class="pills"><span>Humain</span><span>Ambitieux</span><span>Perfectionniste</span></div>
+<a class="btn o" href="a-propos.html">En savoir plus</a></div></div></section>
 
-<section class="sec" id="reservation">
-  <h2>Réservation</h2>
-  <div class="book">
-    <div class="book-intro">
-      <p class="tag">Une demande, une réponse rapide.</p>
-      <ol class="steps">
-        <li><b>01</b><span>Choisissez votre prestation et la date qui vous arrange.</span></li>
-        <li><b>02</b><span>Envoyez la demande en un clic, directement depuis le site.</span></li>
-        <li><b>03</b><span>Je vous confirme la disponibilité et le devis par mail.</span></li>
-      </ol>
-    </div>
-    <div>
-      <form id="f">
-        <label>Prestation<select id="sv" required></select></label>
-        <div class="row2">
-          <label>Date souhaitée<input id="dt" type="date" required></label>
-          <label>Moment de la journée<select id="hr"><option>Flexible</option><option>Matin</option><option>Après-midi</option><option>Soirée</option></select></label>
-        </div>
-        <label>Autre date possible (facultatif)<input id="dt2" type="date"></label>
-        <label>Nom<input id="nm" required autocomplete="name"></label>
-        <label>Votre mail<input id="em" type="email" required autocomplete="email"></label>
-        <div class="row2">
-          <label>Lieu du shooting<input id="lo" placeholder="Paris ou autre ville"></label>
-          <label>Participants<input id="pa" inputmode="numeric" placeholder="1"></label>
-        </div>
-        <label>Votre projet<textarea id="tx" rows="4" placeholder="Type de projet, inspirations, besoins particuliers…"></textarea></label>
-        <input id="hp" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
-        <button class="btn" type="submit">Envoyer la demande</button>
-        <p id="msg" role="status"></p>
-      </form>
-    </div>
-  </div>
-</section>
+<section class="sec"><div class="w"><div class="head rv"><span class="eyebrow">Questions fréquentes</span><h2>Vous vous <em>demandez</em></h2></div>
+<div class="faq rv">
+<details><summary>Dans quelle zone intervenez-vous ?</summary><p>Principalement à Paris. Pour l’Île-de-France ou une autre ville, un supplément selon la localisation est indiqué dans le devis.</p></details>
+<details><summary>Sous quel délai recevrai-je mon devis ?</summary><p>Je réponds à chaque demande sous 48 h, avec une proposition claire et personnalisée.</p></details>
+<details><summary>Quels événements pouvez-vous filmer ?</summary><p>Défilés de mode, vernissages, soirées, salons, concerts : décrivez l’événement dans le formulaire de devis et je vous propose le format adapté, du film souvenir à la captation complète.</p></details>
+<details><summary>Quels sont les délais de livraison ?</summary><p>Ils dépendent du projet. Une option express en 48 h est disponible pour les photos et les reels.</p></details>
+</div></div></section>
+<section class="sec"><div class="w fin rv"><span class="eyebrow">Un projet en tête ?</span><h2>Parlons de <em>votre</em> projet.</h2><p class="lead">Quelques lignes suffisent pour démarrer. Je vous réponds sous 48 h avec une proposition claire.</p><div class="cta"><a class="btn r" href="devis.html">Demander un devis</a><a class="btn o" href="contact.html">Me contacter</a></div></div></section>
 
-<section class="sec contact" id="contact">
-  <h2>Contact</h2><br>
-  <p style="max-width:46ch;margin-bottom:1.5rem">Sacha Minassian, photographe et vidéaste freelance. Pour préparer un devis, indiquez le type de projet, la date, le lieu, le nombre de participants, vos inspirations et vos besoins particuliers.</p>
-  <div class="ct-list">
-    <a class="ct" href="mailto:mns.studioprod@gmail.com"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span><span><strong>mns.studioprod@gmail.com</strong><small>Devis et demandes de shooting</small></span></a>
-    <a class="ct" href="https://instagram.com/mns_studio1" target="_blank" rel="noopener"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle class="f" cx="17.5" cy="6.5" r="1"/></svg></span><span><strong>@mns_studio1</strong><small>Instagram : l’intégralité de mes travaux s’y trouve</small></span></a>
-    <a class="ct" href="https://tiktok.com/@mns_studio.off" target="_blank" rel="noopener"><span class="ic"><svg class="f" viewBox="0 0 24 24" aria-hidden="true"><path d="M16.6 3h-3.2v12.2a2.6 2.6 0 1 1-2.6-2.6c.3 0 .5 0 .8.1V9.4a5.8 5.8 0 1 0 5 5.8V8.6a6.6 6.6 0 0 0 3.8 1.2V6.6A3.8 3.8 0 0 1 16.6 3z"/></svg></span><span><strong>@mns_studio.off</strong><small>TikTok : pour mieux me découvrir</small></span></a>
-  </div>
-</section>
 </main>
-<footer>© 2026 Mns_Studio. Tous droits réservés sur les photographies. Zone principale d’intervention : Paris.</footer>
-
-<div id="lb" role="dialog" aria-modal="true" aria-label="Photo en grand">
-  <button class="x" aria-label="Fermer">×</button><button class="p" aria-label="Précédente">‹</button><img alt=""><button class="n" aria-label="Suivante">›</button>
-</div>
-
-<script>
-/* ===== À MODIFIER ===== */
-const YOUTUBE_ID = "";                 // ex. "dQw4w9WgXcQ" : l’identifiant de ta vidéo YouTube. Vide = section masquée.
-const EMAIL = "MNS.studioprod@gmail.com";
-const WEB3FORMS_KEY = "e3af1aed-5219-4a8a-80b6-4b4d3f8e6371";             // colle ici ta clé Web3Forms (reçue par mail sur web3forms.com). Vide = le formulaire ouvre le mail du client.
-const OFFRES = [               // grille tarifaire : à modifier ici
- {g:"Photographie : shootings solo", o:[
-  {n:"Classic Begins", p:"100 €", l:["Durée : 1 h à 1 h 30","10 photos retouchées","Accompagnement et direction de pose","Idéal pour les portraits naturels et les réseaux sociaux"]},
-  {n:"Editorial Essentiel", p:"140 €", l:["Durée : 1 h 30 à 2 h","15 photos retouchées","Direction artistique personnalisée","Préparation d’une inspiration visuelle","Idéal pour les modèles, artistes, créateurs et portraits éditoriaux"]},
-  {n:"Editorial Premium", p:"220 €", l:["Durée : jusqu’à 2 h 30","30 photos retouchées","Direction artistique approfondie","Possibilité de plusieurs changements de tenues","Plusieurs ambiances ou lieux selon les conditions du shooting"]},
-  {n:"Editorial Signature", p:"290 €", l:["Durée : jusqu’à 3 h 30","Jusqu’à 40 photos retouchées","Direction artistique avancée et préparation du projet","Plusieurs tenues et ambiances possibles","Une expérience créative personnalisée"]}]},
- {g:"Photographie : shootings en groupe", o:[
-  {n:"Duo", p:"250 €", l:["Durée : jusqu’à 2 h 30","Portraits individuels et photos à deux","Idéal pour les couples, amis et projets créatifs","Nombre de photos retouchées défini avant réservation"]},
-  {n:"Trio", p:"300 €", l:["Durée : jusqu’à 3 h","Jusqu’à 30 photos retouchées","Portraits individuels et photos de groupe","Idéal pour les amis, créateurs et petits collectifs"]},
-  {n:"Famille", p:"300 €", l:["Durée : jusqu’à 3 h","Jusqu’à 30 photos retouchées","Portraits individuels, photos de groupe et moments spontanés","Animaux acceptés selon le lieu et les conditions du shooting"]},
-  {n:"Animaux", p:"155 €", l:["Durée : jusqu’à 1 h","15 photos retouchées","Jusqu’à 3 animaux","Portraits individuels et photos avec leur propriétaire","Lieu et conditions adaptés au bien-être et à la sécurité des animaux"]},
-  {n:"Projet photo sur mesure", p:"Sur devis", l:["Tarif sur devis selon le concept, la durée, le nombre de participants et les besoins spécifiques."]}]},
- {g:"Vidéo : contenu court", o:[
-  {n:"Reel / TikTok", p:"250 €", l:["Briefing et définition du concept","Jusqu’à 1 h 30 de tournage","1 vidéo verticale de 15 à 30 secondes","Montage dynamique et étalonnage","Sous-titres et effets stylisés selon le projet","Livraison adaptée aux réseaux sociaux"], note:"Les scénarios complexes, tournages sur plusieurs lieux, acteurs ou effets avancés peuvent faire l’objet d’un devis complémentaire."},
-  {n:"Monthly Creator", p:"600 € / mois", l:["Préparation du contenu et définition des idées","Une demi-journée de tournage, jusqu’à 4 h","Jusqu’à 4 vidéos verticales par mois, de 45 secondes maximum chacune","Montage, étalonnage et sous-titres","Intégration des éléments graphiques ou de l’identité visuelle du créateur","Une série de corrections raisonnables par vidéo"], note:"Les tournages supplémentaires et demandes complexes font l’objet d’un supplément ou d’un devis. Le calendrier de tournage, les modalités de livraison et le paiement sont définis contractuellement."}]},
- {g:"Vidéo : événementiel", o:[
-  {n:"Aftermovie, demi-journée", p:"500 €", l:["Jusqu’à 4 h de présence sur place","Captation des moments forts, de l’ambiance et du public","1 aftermovie monté de 2 minutes maximum","Étalonnage et mixage audio","Musique utilisée sous réserve des droits applicables","Livraison numérique"]},
-  {n:"Aftermovie, journée complète", p:"750 €", l:["Jusqu’à 8 h de présence sur place","Captation des temps forts, participants et ambiance générale","1 aftermovie monté de 5 minutes maximum","Étalonnage et mixage audio","1 teaser vertical de 30 secondes pour les réseaux sociaux","Musique utilisée sous réserve des droits applicables","Livraison numérique"]},
-  {n:"Projet vidéo sur mesure", p:"Sur devis", l:["Tarif sur devis selon la durée de captation, le nombre de vidéos, le format, le scénario et les contraintes de production."]}]}
-];
-const OPTIONS = [
- ["Livraison express sous 48 h","+50 €, selon disponibilité et confirmation préalable"],
- ["Studio","Supplément à partir de 75 €, selon le lieu et le coût de location"],
- ["Photos retouchées supplémentaires","Sur demande"],
- ["Vidéo supplémentaire ou déclinaisons de format","Sur devis"],
- ["Prestation en dehors de Paris","Supplément selon la localisation et les frais de déplacement, précisé sur le devis"],
- ["Scénario, effets avancés ou production complexe","Sur devis"]
-];
-const SERIES = [
- {t:"Concorde", m:"Robes noires au coucher du soleil, place de la Concorde.", bg:"#000", f:["dsc07734","dsc07579","dsc07583","dsc07590","dsc07661","dsc07664","dsc07606","dsc07702-2","dsc07708-2","dsc07700-2","dsc07716","dsc07725"]},
- {t:"Feu", m:"Journal brûlé, lunettes noires, lumière orange.", bg:"#1c0603", f:["dsc08652","dsc08635","dsc08602-3","dsc08659","dsc08551","dsc08554","retoucher-noir"]},
- {t:"Graffiti", m:"Cuir, chemise blanche et murs peints.", bg:"#000", f:["dsc08339","dsc08275-2","dsc08309","dsc08080","dsc08104","dsc08105"]},
- {t:"Porte bleue", m:"Chemise à carreaux sur bleu roi.", bg:"#10229c", sb:"#4a63ff", f:["dsc09242","dsc09266","dsc09273"]},
- {t:"Rouge", m:"Un chemisier rouge, deux lumières.", bg:"#7d0a12", f:["dsc09861","dsc09867","dsc00090","dsc00102","dsc00096"]},
- {t:"Reflets", m:"Miroir et pierre éclairée en rouge.", bg:"#000", f:["dsc09829","dsc09850","dsc09855"]},
- {t:"Néon", m:"Fisheye, escalator et lumières violettes.", bg:"#1a0f55", sb:"#a35cff", f:["neon-escalator"]},
- {t:"Éclats", m:"Un regard derrière des branches dorées.", bg:"#000", f:["eclats-dores"]},
- {t:"Rues", m:"Contre-jour, tunnel de verre et parking.", bg:"#000", f:["dsc05676-2","dsc05865","dsc06128","dsc06231-2","dsc02429-1","dsc02856-1","finale"]}
-];
-/* ===== FIN ===== */
-
-const $ = s => document.querySelector(s);
-const src = n => `${n}.jpg?v=3`;
-const all = [];
-
-// hero : diaporama
-const sl = $('#slides');
-[["dsc08652","center 36%"],["dsc09829","center 0%"],["dsc07708-2","center 0%"],["dsc05676-2","center 0%"]].forEach(([n,pos],i)=>{const im=new Image();im.src=src(n);im.style.objectPosition=pos;im.alt="";if(i===0)im.className="on";sl.append(im)});
-let k=0;setInterval(()=>{const s=sl.children;s[k].classList.remove("on");k=(k+1)%s.length;s[k].classList.add("on")},4200);
-
-// séries
-const box = $('#series');
-SERIES.forEach(s=>{
-  const el=document.createElement('div');el.className='serie';el.dataset.bg=s.bg;if(s.sb)el.style.setProperty('--sb',s.sb);
-  el.innerHTML=`<h2>${s.t}</h2><p class="meta">${s.m}</p><div class="rail"></div>`;
-  const rail=el.querySelector('.rail');
-  s.f.forEach(n=>{
-    const b=document.createElement('button');b.setAttribute('aria-label',`Agrandir : ${s.t}`);
-    const i=all.push({n,t:s.t})-1;b.dataset.i=i;
-    b.innerHTML=`<img src="${src(n)}" alt="${s.t}, photo de Mns_Studio" loading="lazy">`;
-    rail.append(b);
-  });
-  box.append(el);
-});
-// fond qui change avec la série visible
-const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)document.body.style.setProperty('--bg',e.target.dataset.bg)}),{rootMargin:'-45% 0px -45% 0px'});
-document.querySelectorAll('.serie').forEach(e=>io.observe(e));
-new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)document.body.style.setProperty('--bg','#000')}),{rootMargin:'-45% 0px -45% 0px'}).observe($('#reservation'));
-
-// matériel (page À propos)
-
-// glisser pour défiler
-document.querySelectorAll('.rail').forEach(r=>{
-  let d=false,x=0,l=0,moved=0;
-  r.addEventListener('pointerdown',e=>{if(e.pointerType!=='mouse')return;d=true;moved=0;x=e.clientX;l=r.scrollLeft});
-  addEventListener('pointerup',()=>{d=false;r.classList.remove('drag')});
-  addEventListener('pointermove',e=>{if(!d)return;const dx=e.clientX-x;moved=Math.max(moved,Math.abs(dx));if(moved>4)r.classList.add('drag');r.scrollLeft=l-dx});
-  r.addEventListener('click',e=>{if(moved>4){e.stopPropagation();e.preventDefault();moved=0}},true);
-});
-
-// lightbox
-const lb=$('#lb'),lbi=lb.querySelector('img');let cur=0;
-const show=i=>{cur=(i+all.length)%all.length;lbi.src=src(all[cur].n);lbi.alt=all[cur].t};
-box.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;show(+b.dataset.i);lb.classList.add('on');lb.querySelector('.x').focus()});
-const close=()=>lb.classList.remove('on');
-lb.querySelector('.x').onclick=close;lb.querySelector('.p').onclick=()=>show(cur-1);lb.querySelector('.n').onclick=()=>show(cur+1);
-lb.addEventListener('click',e=>{if(e.target===lb)close()});
-addEventListener('keydown',e=>{if(!lb.classList.contains('on'))return;if(e.key==='Escape')close();if(e.key==='ArrowLeft')show(cur-1);if(e.key==='ArrowRight')show(cur+1)});
-
-// vidéo
-if(YOUTUBE_ID){$('#yt').src='https://www.youtube-nocookie.com/embed/'+YOUTUBE_ID;$('#video').hidden=false}
-
-// réservation
-const JOURS=["Dimanche","Lundi","Mardi","Mercredi","Jeudi","Vendredi","Samedi"];
-const iso=d=>d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
-const mondayOf=d=>{const m=new Date(d.getFullYear(),d.getMonth(),d.getDate());m.setDate(m.getDate()-((m.getDay()+6)%7));return m};
-const base=mondayOf(new Date());let off=0,chosen=null;
-const CATS=[];OFFRES.forEach(g=>{const [c,t]=g.g.split(' : ');let k=CATS.find(x=>x.c===c);if(!k)CATS.push(k={c,subs:[]});k.subs.push({t:t||'',o:g.o})});
-const cap=t=>t.charAt(0).toUpperCase()+t.slice(1);
-const cardH=o=>{const devis=/devis/i.test(o.p);const pr=o.p.includes(' / ')?`${o.p.split(' / ')[0]} <small>/ ${o.p.split(' / ')[1]}</small>`:o.p;return `<article class="card${devis?' devis':''}"><h4>${o.n}</h4><p class="price">${pr}</p><ul>${o.l.map(x=>`<li>${x}</li>`).join('')}</ul>${o.note?`<p class="note">${o.note}</p>`:''}</article>`};
-$('#tarifs-list').innerHTML=CATS.map((k,i)=>`<div class="cat"><div class="cat-h"><h3>${k.c}</h3><span>0${i+1}</span></div>${k.subs.map(s=>`<div class="sub">${s.t?`<p class="sub-t">${cap(s.t)}</p>`:''}<div class="cards">${s.o.map(cardH).join('')}</div></div>`).join('')}</div>`).join('');
-$('#opts').innerHTML=OPTIONS.map(([a,b])=>`<li><span>${a}</span><strong>${b}</strong></li>`).join('');
-$('#sv').innerHTML=OFFRES.map(g=>`<optgroup label="${g.g}">${g.o.map(o=>`<option>${o.n} (${o.p})</option>`).join('')}</optgroup>`).join('');
-const dt=$('#dt'),dt2=$('#dt2');const t0=new Date();t0.setDate(t0.getDate()+1);dt.min=dt2.min=iso(t0);
-const fr=v=>{const [y,m,d]=v.split('-');const j=JOURS[new Date(v+'T12:00:00').getDay()];return `${j} ${d}/${m}/${y}`};
-$('#f').addEventListener('submit',e=>{
-  e.preventDefault();
-  const when=`${fr(dt.value)} (${$('#hr').value.toLowerCase()})`+(dt2.value?`\nAutre date possible : ${fr(dt2.value)}`:'');
-  const body=`Bonjour,\n\nJe souhaite réserver : ${$('#sv').value}\nDate souhaitée : ${when}\n\nNom : ${$('#nm').value}\nMail : ${$('#em').value}\nLieu : ${$('#lo').value}\nParticipants : ${$('#pa').value}\n\nProjet :\n${$('#tx').value}`;
-  const sub='Demande de réservation : '+fr(dt.value),btn=$('#f button[type=submit]'),msg=$('#msg');
-  btn.disabled=true;msg.textContent='Envoi en cours…';
-  const fallback=()=>{location.href=`mailto:${EMAIL}?subject=${encodeURIComponent(sub)}&body=${encodeURIComponent(body)}`};
-  if(!WEB3FORMS_KEY){btn.disabled=false;msg.textContent='Votre application de mail s’ouvre avec la demande. Envoyez-la pour confirmer.';fallback();return}
-  fetch('https://api.web3forms.com/submit',{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},
-    body:JSON.stringify({access_key:WEB3FORMS_KEY,subject:sub,from_name:'Site Mns_Studio',name:$('#nm').value,email:$('#em').value,message:body,botcheck:$('#hp').value})})
-  .then(r=>r.json()).then(j=>{if(!j.success)throw 0;msg.textContent='Merci ! Votre demande est bien envoyée, je vous réponds très vite par mail.';$('#f').reset()})
-  .catch(()=>{msg.textContent='L’envoi direct a échoué, votre application de mail s’ouvre à la place.';fallback()})
-  .finally(()=>{btn.disabled=false});
-});
-
-// menu mobile
-const hd=document.querySelector('header'),mb=$('#mb');
-mb.onclick=()=>{const o=hd.classList.toggle('open');mb.textContent=o?'Fermer':'Menu';mb.setAttribute('aria-expanded',o)};
-document.querySelectorAll('#nav a').forEach(a=>a.addEventListener('click',()=>{hd.classList.remove('open');mb.textContent='Menu';mb.setAttribute('aria-expanded',false)}));
-
-
-/* À propos : présentation en 3 pages */
-(function(){const sl=[...document.querySelectorAll('.ab-slide')],dots=[...document.querySelectorAll('#ab-dots i')],cnt=document.getElementById('ab-count');let c=0,x0=null;
-function go(n){c=(n+sl.length)%sl.length;sl.forEach((e,i)=>e.classList.toggle('on',i===c));dots.forEach((e,i)=>e.classList.toggle('on',i===c));cnt.textContent='0'+(c+1)+' / 0'+sl.length}
-document.getElementById('ab-prev').onclick=()=>go(c-1);document.getElementById('ab-next').onclick=()=>go(c+1);
-dots.forEach((d,i)=>d.onclick=()=>go(i));
-const st=document.querySelector('.ab-stage');st.addEventListener('touchstart',e=>{x0=e.touches[0].clientX},{passive:true});
-st.addEventListener('touchend',e=>{if(x0===null)return;const d=e.changedTouches[0].clientX-x0;if(Math.abs(d)>50)go(c+(d<0?1:-1));x0=null});})();
-</script>
+<footer class="ft"><div class="w"><div class="cols">
+<div><a class="logo" href="index.html" aria-label="Mns_Studio, accueil"><b>Mns</b><i></i><em>Studio</em></a><p>Photographe et vidéaste à Paris. Un seul interlocuteur, de l’idée à la livraison.</p></div>
+<div><h4>Pages</h4><ul><li><a href="photo.html">Photo</a></li><li><a href="video.html">Vidéo</a></li><li><a href="a-propos.html">À propos</a></li><li><a href="devis.html">Devis</a></li></ul></div>
+<div><h4>Projets</h4><ul><li><a href="devis.html#event">Captation événementielle</a></li><li><a href="devis.html#reel">Contenu court</a></li><li><a href="devis.html#photo">Shooting photo</a></li></ul></div>
+<div><h4>Contact</h4><ul><li><a href="mailto:mns.studioprod@gmail.com">mns.studioprod@gmail.com</a></li><li><a href="https://www.instagram.com/mns_studio1" target="_blank" rel="noopener">Instagram @mns_studio1</a></li><li><a href="https://www.tiktok.com/@mns_studio.off" target="_blank" rel="noopener">TikTok @mns_studio.off</a></li></ul></div>
+</div><div class="bot"><span>© 2026 Mns_Studio · Paris et Île-de-France</span><a href="mentions-legales.html">Mentions légales</a></div></div></footer>
+<script src="app.js"></script>
 </body>
 </html>
