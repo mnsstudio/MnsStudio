@@ -57,6 +57,19 @@
   b.addEventListener('mousemove',function(e){var r=b.getBoundingClientRect();b.style.transform='translate('+((e.clientX-r.left-r.width/2)*.18)+'px,'+((e.clientY-r.top-r.height/2)*.28)+'px)'});
   b.addEventListener('mouseleave',function(){b.style.transform=''});
  });
+
+ /* galerie par séries */
+ var lb=document.getElementById('lb');
+ if(lb){var im=lb.querySelector('img'),ct=lb.querySelector('.lbc'),tt=lb.querySelector('.lbt'),L=[],ix=0,last=null;
+  var show=function(i){ix=(i+L.length)%L.length;im.src='img/'+L[ix]+'.jpg';im.alt=tt.textContent+', photo '+(ix+1);ct.textContent=(ix+1)+' / '+L.length};
+  var open=function(b){L=b.dataset.p.split(',');tt.textContent=b.querySelector('.sr-k').textContent;lb.classList.toggle('one',L.length<2);last=b;show(0);lb.hidden=false;document.body.style.overflow='hidden';lb.querySelector('.lbx').focus()};
+  var close=function(){lb.hidden=true;document.body.style.overflow='';if(last)last.focus()};
+  [].forEach.call(document.querySelectorAll('.sr'),function(b){b.addEventListener('click',function(){open(b)})});
+  lb.querySelector('.lbx').onclick=close;lb.querySelector('.lbp').onclick=function(){show(ix-1)};lb.querySelector('.lbn').onclick=function(){show(ix+1)};
+  lb.addEventListener('click',function(e){if(e.target===lb)close()});
+  document.addEventListener('keydown',function(e){if(lb.hidden)return;if(e.key==='Escape')close();if(L.length>1&&e.key==='ArrowLeft')show(ix-1);if(L.length>1&&e.key==='ArrowRight')show(ix+1)});
+  var tx=0;lb.addEventListener('touchstart',function(e){tx=e.touches[0].clientX},{passive:true});lb.addEventListener('touchend',function(e){var d=e.changedTouches[0].clientX-tx;if(L.length>1&&Math.abs(d)>50)show(ix+(d<0?1:-1))});
+ }
  var f=document.getElementById('dform');if(!f)return;
  var T=[{"id": "photo", "t": "Photographie", "s": "Shooting solo, duo, groupe, famille", "price": "Formule", "f": [["sel", "Formule", "Classic Begins, solo|100", "Editorial Essentiel, solo|140", "Editorial Premium, solo|220", "Editorial Signature, solo|290", "Duo|250", "Trio|300", "Famille|300", "Animaux|155"], ["txt", "Nombre de personnes", "Ex. 2"], ["txt", "Lieu souhaité", "Paris, studio, extérieur"], ["sel", "Livraison", "Standard|0", "Express 48 h, +50 €|50"]]}, {"id": "event", "t": "Captation événementielle", "s": "Défilé, soirée, salon, concert", "price": null, "f": [["sel", "Type d’événement", "Défilé de mode|0", "Soirée|0", "Salon ou conférence|0", "Concert|0", "Autre|0"], ["txt", "Nom de l’événement ou de la marque", "Titre, organisateur"], ["txt", "Lieu", "Salle, adresse, ville"], ["txt", "Durée sur place", "Ex. 3 heures"], ["txt", "Nombre d’invités ou de passages", "Ex. 120"], ["sel", "Livrable souhaité", "Film souvenir de 1 à 2 minutes|0", "Captation complète|0", "Film et teaser réseaux|0", "Film et photos|0", "Je ne sais pas encore|0"]]}, {"id": "reel", "t": "Contenu court", "s": "Reels et TikTok pour vos réseaux", "price": null, "f": [["sel", "Format", "Un reel ou TikTok|0", "Plusieurs vidéos par mois|0", "Je ne sais pas encore|0"], ["txt", "Votre compte ou marque", "@..."], ["sel", "Style", "Dynamique et rythmé|0", "Mode et lifestyle|0", "Produit ou service|0"], ["sel", "Livraison", "Standard|0", "Express 48 h|0"]]}, {"id": "custom", "t": "Projet sur mesure", "s": "Photo, vidéo ou les deux", "price": null, "f": [["sel", "Type de projet", "Photo|0", "Vidéo|0", "Photo et vidéo|0"], ["txt", "Lieu", "Paris, autre ville"]]}],KEY="e3af1aed-5219-4a8a-80b6-4b4d3f8e6371",MAIL="mns.studioprod@gmail.com";
  var types=document.getElementById('types'),fields=document.getElementById('fields'),ok=document.getElementById('ok'),estn=document.getElementById('estn'),cur=T[0];
