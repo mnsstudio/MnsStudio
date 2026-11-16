@@ -102,13 +102,14 @@
  types.innerHTML=T.map(function(t){return '<button type="button" data-t="'+t.id+'" aria-pressed="false"><b>'+esc(t.t)+'</b><small>'+esc(t.s)+'</small></button>'}).join('');
  types.addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;build(T.filter(function(t){return t.id===b.dataset.t})[0])});
  var q=(location.hash||'').slice(1);build(T.filter(function(t){return t.id===q})[0]||T[0]);
+ var show=function(){try{ok.scrollIntoView({behavior:'smooth',block:'center'})}catch(x){}};
  f.addEventListener('submit',function(e){
-  e.preventDefault();
+  e.preventDefault();ok.className='ok';ok.textContent='';
   if(document.getElementById('hp').value)return;
   var n=document.getElementById('fn').value.trim(),m=document.getElementById('fm').value.trim(),d=document.getElementById('fd').value.trim();
-  if(!d){ok.className='ok bad';ok.textContent='Décrivez votre projet en quelques lignes.';document.getElementById('fd').focus();return}
-  if(!n||!/^\S+@\S+\.\S+$/.test(m)){ok.className='ok bad';ok.textContent='Indiquez votre nom et une adresse mail valide.';return}
-  if(!document.getElementById('fc').checked){ok.className='ok bad';ok.textContent='Merci de cocher la case d’autorisation pour être recontacté.';return}
+  if(!d){ok.className='ok bad';ok.textContent='Décrivez votre projet en quelques lignes.';show();document.getElementById('fd').focus();return}
+  if(!n||!/^\S+@\S+\.\S+$/.test(m)){ok.className='ok bad';ok.textContent='Indiquez votre nom et une adresse mail valide.';show();return}
+  if(!document.getElementById('fc').checked){ok.className='ok bad';ok.textContent='Merci de cocher la case d’autorisation pour être recontacté.';show();return}
   var lines=['Votre projet concerne : '+cur.t,''];
   fields.querySelectorAll('[data-l]').forEach(function(x){var v=x.tagName==='SELECT'?x.selectedOptions[0].text:x.value;if(v&&v!=='Sélectionnez')lines.push(x.dataset.l+' : '+v)});
   if(estn.textContent)lines.push(estn.textContent);
@@ -117,10 +118,10 @@
   var body=lines.join('\n'),btn=f.querySelector('button[type=submit]');btn.disabled=true;btn.textContent='Envoi en cours…';
   fetch('https://api.web3forms.com/submit',{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},body:JSON.stringify({access_key:KEY,subject:'Demande de devis : '+cur.t+' ('+n+')',from_name:n,email:m,message:body})})
   .then(function(r){return r.json()}).then(function(j){
-    if(j.success){ok.className='ok good';ok.textContent='Merci, votre demande est bien envoyée. Je reviens vers vous sous 48 h.';f.reset();build(cur)}
+    if(j.success){ok.className='ok good';ok.textContent='Merci, votre demande est bien envoyée. Je reviens vers vous sous 48 h.';f.reset();build(cur);ok.className='ok good';ok.textContent='Merci, votre demande est bien envoyée. Je reviens vers vous sous 48 h.'}
     else throw 0
   }).catch(function(){
     ok.className='ok bad';ok.innerHTML='L’envoi a échoué. <a href="mailto:'+MAIL+'?subject='+encodeURIComponent('Demande de devis : '+cur.t)+'&body='+encodeURIComponent(body)+'" style="text-decoration:underline">Envoyer par mail</a>';
-  }).finally(function(){btn.disabled=false;btn.textContent='Envoyer ma demande'});
+  }).finally(function(){btn.disabled=false;btn.textContent='Envoyer ma demande';show()});
  });
 })();
