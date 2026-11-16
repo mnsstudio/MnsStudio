@@ -303,3 +303,20 @@ html.entering .curtain .logo,.curtain.leaving .logo{opacity:1}
 @media(prefers-reduced-motion:reduce){.ok.good,.ok.bad{animation:none}}
 .ok.good,.ok.bad{display:block}
 .ok.good::before,.ok.bad::before{display:inline-grid;width:1.6rem;height:1.6rem;margin-right:.7rem;vertical-align:middle}
+/* menu mobile : plein écran, fondu, liens qui apparaissent en cascade, burger -> croix */
+.bg span,.bg span::before{transition:transform .45s cubic-bezier(.2,.8,.2,1),background .3s,top .3s}
+.bg[aria-expanded=true] span{transform:rotate(45deg)}
+.bg[aria-expanded=true] span::before{top:0;transform:rotate(90deg)}
+@media(max-width:900px){
+ .hd{z-index:60}.bg{position:relative;z-index:3}.logo{position:relative;z-index:3}
+ html.mo{overflow:hidden}
+ .nv{position:fixed;inset:0;z-index:2;height:100dvh;transform:none;justify-content:center;align-items:flex-start;gap:0;padding:5.5rem var(--gut) 2.5rem;background:rgba(6,6,6,.97);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border:0;opacity:0;visibility:hidden;transition:opacity .35s ease,visibility 0s linear .35s}
+ .nv.o{opacity:1;visibility:visible;transition:opacity .35s ease}
+ .nv a{width:auto;border:0;padding:.35rem 0;font-size:clamp(2.2rem,10vw,3.2rem);font-weight:600;letter-spacing:-.03em;line-height:1.15;opacity:0;transform:translateY(18px);transition:opacity .45s ease,transform .6s cubic-bezier(.2,.8,.2,1),color .2s}
+ .nv.o a{opacity:1;transform:none}
+ .nv.o a:nth-child(1){transition-delay:.08s}.nv.o a:nth-child(2){transition-delay:.14s}.nv.o a:nth-child(3){transition-delay:.2s}.nv.o a:nth-child(4){transition-delay:.26s}.nv.o a:nth-child(5){transition-delay:.34s}
+ .nv a[aria-current=page]{color:var(--red)}
+ .nv .pill{margin-top:2rem;font-size:1rem;font-weight:600;letter-spacing:0;line-height:1;padding:1.1rem 1.8rem;background:var(--red);color:#fff;border-radius:999px;text-align:center}
+}
+@media(prefers-reduced-motion:reduce){.nv,.nv a{transition:none!important}}
+@media(max-width:900px){html.mo .hd,html.mo .hd.s{-webkit-backdrop-filter:none;backdrop-filter:none;background:transparent;border-color:transparent;transform:none}}

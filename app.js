@@ -2,7 +2,9 @@
 (function(){
  var R=document.documentElement,rm=matchMedia('(prefers-reduced-motion:reduce)').matches,fine=matchMedia('(pointer:fine)').matches;
  var hd=document.querySelector('.hd'),bg=document.querySelector('.bg'),nv=document.querySelector('.nv'),cu=document.querySelector('.curtain'),pb=document.querySelector('.pgbar');
- bg.addEventListener('click',function(){var o=nv.classList.toggle('o');bg.setAttribute('aria-expanded',o)});
+ bg.addEventListener('click',function(){var o=nv.classList.toggle('o');bg.setAttribute('aria-expanded',o);document.documentElement.classList.toggle('mo',o)});
+ nv.addEventListener('click',function(e){if(e.target.closest('a')){nv.classList.remove('o');document.documentElement.classList.remove('mo');bg.setAttribute('aria-expanded','false')}});
+ addEventListener('keydown',function(e){if(e.key==='Escape'&&nv.classList.contains('o'))bg.click()});
  /* mots */
  function split(el){var i=0;(function walk(n){Array.from(n.childNodes).forEach(function(c){
   if(c.nodeType===3){var fr=document.createDocumentFragment();c.textContent.split(/(\s+)/).forEach(function(p){if(!p)return;
