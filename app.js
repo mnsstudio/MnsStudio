@@ -66,7 +66,7 @@
  /* galerie par séries */
  var lb=document.getElementById('lb');
  if(lb){var im=lb.querySelector('img'),ct=lb.querySelector('.lbc'),tt=lb.querySelector('.lbt'),L=[],ix=0,last=null;
-  var show=function(i){ix=(i+L.length)%L.length;im.src='img/'+L[ix]+'.jpg';im.alt=tt.textContent+', photo '+(ix+1);ct.textContent=(ix+1)+' / '+L.length};
+  var show=function(i){ix=(i+L.length)%L.length;im.src='img/'+L[ix]+'.jpg';im.alt=tt.textContent+' à Paris, photo '+(ix+1)+' sur '+L.length+', photographe Sacha Minassian';ct.textContent=(ix+1)+' / '+L.length};
   var open=function(b){L=b.dataset.p.split(',');tt.textContent=b.querySelector('.sr-k').textContent;lb.classList.toggle('one',L.length<2);last=b;show(0);lb.hidden=false;document.body.style.overflow='hidden';lb.querySelector('.lbx').focus()};
   var close=function(){lb.hidden=true;document.body.style.overflow='';if(last)last.focus()};
   [].forEach.call(document.querySelectorAll('.sr'),function(b){b.addEventListener('click',function(){open(b)})});
