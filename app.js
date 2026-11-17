@@ -127,3 +127,16 @@
   }).finally(function(){btn.disabled=false;btn.textContent='Envoyer ma demande';show()});
  });
 })();
+/* Bandeau d'information confidentialité : aucun cookie sur le site, le bandeau sert à le dire clairement */
+(function(){
+ var K='mns_info_ok',seen=false;
+ try{seen=localStorage.getItem(K)==='1'}catch(e){}
+ if(seen)return;
+ var b=document.createElement('div');b.className='ck';b.setAttribute('role','region');b.setAttribute('aria-label','Information sur la confidentialité');
+ b.innerHTML='<p><strong>Votre vie privée</strong>Ce site n’utilise aucun cookie ni outil de suivi. Seules les informations du formulaire de devis sont utilisées, avec votre accord. <a href="mentions-legales.html#cookies">En savoir plus</a></p><button type="button">Compris</button>';
+ b.querySelector('button').addEventListener('click',function(){
+  try{localStorage.setItem(K,'1')}catch(e){}
+  b.classList.remove('in');setTimeout(function(){b.remove()},500);
+ });
+ setTimeout(function(){document.body.appendChild(b);requestAnimationFrame(function(){requestAnimationFrame(function(){b.classList.add('in')})})},1800);
+})();
