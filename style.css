@@ -171,7 +171,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
 .fld input:focus,.fld select:focus,.fld textarea:focus{border-color:var(--red);outline:0}
 .fld textarea{min-height:150px;resize:vertical}
 .fld select option{background:#111}input[type=date]{color-scheme:dark}
-.est{color:var(--ink);border-left:2px solid var(--red);padding-left:1.2rem;font-size:.97rem}
+.est{color:var(--ink);border-left:2px solid var(--ink);padding-left:1.2rem;font-size:.97rem}
 .chk{display:flex;gap:1rem;align-items:flex-start;color:var(--mute);font-size:.92rem;line-height:1.6;cursor:pointer}
 .chk input{width:20px;height:20px;margin-top:.2rem;accent-color:var(--red);flex:none}
 .chk a{text-decoration:underline}
@@ -336,7 +336,6 @@ html.entering .curtain .logo,.curtain.leaving .logo{opacity:1}
 html.mo .ck{display:none}
 @media(prefers-reduced-motion:reduce){.ck{transition:opacity .2s}}
 
-#estd{margin:0 0 .8rem;color:var(--ink);opacity:.8}
 
 .tf{margin:2.4rem 0;border-top:1px solid rgba(243,239,232,.14)}
 .tr{display:grid;grid-template-columns:2fr 1.2fr 1.2fr 1.2fr;gap:1rem;align-items:center;padding:1.2rem 0;border-bottom:1px solid rgba(243,239,232,.14)}
@@ -352,3 +351,8 @@ html.mo .ck{display:none}
 .chips button:hover{border-color:#3a3433}
 .chips button[aria-pressed=true]{border-color:var(--red);background:#150a0b}
 .types button:last-child:nth-child(odd){grid-column:1/-1}
+
+.fld.pr{grid-column:1}.fld.dsc{grid-column:2}
+.fld.dsc p{margin:0;border-left:2px solid var(--ink);padding-left:1.2rem;font-size:.95rem;line-height:1.6;color:var(--ink);opacity:.85}
+@media(max-width:700px){.fld.pr,.fld.dsc{grid-column:auto}}
+.fld.pr,.fld.dsc{align-self:start}
