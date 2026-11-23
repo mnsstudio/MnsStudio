@@ -99,7 +99,7 @@
  function upd(){
   var tot=0,has=false;
   if(cur.price){fields.querySelectorAll('select[data-l]').forEach(function(x){if(x.dataset.l===cur.price&&+x.value>0)has=true;tot+=(+x.value)})}
-  estn.hidden=!has;estn.textContent=has?'Estimation indicative : '+tot+' €, à confirmer dans votre devis.':'';
+  estn.hidden=!has;estn.textContent=has?'À partir de '+tot+' €. Estimation indicative, le prix final est confirmé dans votre devis.':'';
  }
  types.innerHTML=T.map(function(t){return '<button type="button" data-t="'+t.id+'" aria-pressed="false"><b>'+esc(t.t)+'</b><small>'+esc(t.s)+'</small></button>'}).join('');
  types.addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;build(T.filter(function(t){return t.id===b.dataset.t})[0])});
