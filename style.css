@@ -344,3 +344,11 @@ html.mo .ck{display:none}
 .tr div span{display:block;opacity:.65;font-size:.9rem;margin-top:.2rem}
 .tr strong{color:var(--red);font-weight:600;text-align:right}
 @media(max-width:700px){.tr{grid-template-columns:1fr 1fr;gap:.4rem 1rem}.tr strong{text-align:left;grid-column:1/-1}}
+
+.sub{font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);margin:.6rem 0 -.6rem;padding-top:1.4rem;border-top:1px solid var(--line)}
+.fld .clb{font-size:.88rem;color:var(--mute);font-weight:500}
+.chips{display:flex;flex-wrap:wrap;gap:.6rem}
+.chips button{padding:.7rem 1.1rem;border:1px solid var(--line);background:var(--bg2);color:var(--ink);border-radius:999px;font:inherit;font-size:.93rem;transition:border-color .25s,background .25s}
+.chips button:hover{border-color:#3a3433}
+.chips button[aria-pressed=true]{border-color:var(--red);background:#150a0b}
+.types button:last-child:nth-child(odd){grid-column:1/-1}
