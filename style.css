@@ -337,3 +337,10 @@ html.mo .ck{display:none}
 @media(prefers-reduced-motion:reduce){.ck{transition:opacity .2s}}
 
 #estd{margin:0 0 .8rem;color:var(--ink);opacity:.8}
+
+.tf{margin:2.4rem 0;border-top:1px solid rgba(243,239,232,.14)}
+.tr{display:grid;grid-template-columns:2fr 1.2fr 1.2fr 1.2fr;gap:1rem;align-items:center;padding:1.2rem 0;border-bottom:1px solid rgba(243,239,232,.14)}
+.tr b{display:block;font-weight:600}
+.tr div span{display:block;opacity:.65;font-size:.9rem;margin-top:.2rem}
+.tr strong{color:var(--red);font-weight:600;text-align:right}
+@media(max-width:700px){.tr{grid-template-columns:1fr 1fr;gap:.4rem 1rem}.tr strong{text-align:left;grid-column:1/-1}}
