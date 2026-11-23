@@ -335,3 +335,5 @@ html.entering .curtain .logo,.curtain.leaving .logo{opacity:1}
 @media(max-width:600px){.ck{right:.8rem;max-width:none;flex-direction:column;align-items:stretch;gap:.8rem;padding:1rem}.ck button{text-align:center}}
 html.mo .ck{display:none}
 @media(prefers-reduced-motion:reduce){.ck{transition:opacity .2s}}
+
+#estd{margin:0 0 .8rem;color:var(--ink);opacity:.8}
